@@ -4,6 +4,8 @@ import { ParticipantContext } from "../contexts/ParticipantContext";
 import { UserContext } from "../contexts/UserContext";
 
 import CurrentlyPlaying from "./../components/CurrentlyPlaying";
+import EntryList from "./../components/EntryList";
+
 import LoginView from "./LoginView";
 
 const HomeView: React.FC<{}> = () => {
@@ -12,7 +14,7 @@ const HomeView: React.FC<{}> = () => {
 
     return ( 
         <>
-            {user.name == "" ? <LoginView/> : <CurrentlyPlaying participant={participants[5]}/>}        
+            {user.name == "" ? <LoginView/> : <><CurrentlyPlaying/><EntryList/></>}        
         </>
      );
 }

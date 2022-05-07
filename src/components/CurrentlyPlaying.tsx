@@ -71,9 +71,9 @@ const CurrentlyPlaying: React.FC<Props> = ({participant}) => {
                     <Typography sx={{ fontWeight:"bold"}} variant="h4">{toStringWithZeroPadding(participant.order)}</Typography>
                 </Box>
                 <Box>
-                    <Typography sx ={{color: "green", fontWeight:"bold"}}variant="h5">{participant.country}</Typography>
-                    <Typography sx={{ fontWeight:"bold"}} variant="h4">{participant.title}</Typography>
-                    <Typography variant="subtitle1">By {participant.artist}</Typography>
+                    <Typography sx ={{color: "green", fontWeight:"bold", lineHeight:"1.2"}}variant="h5"> Sweden</Typography>
+                    <Typography sx={{ fontWeight:"bold", lineHeight:"1.2"}} variant="h4">Hold me closer</Typography>
+                    <Typography sx={{lineHeight:"1.2"}}variant="subtitle1">By Julia Jacobs</Typography>
                 </Box>
             </Box>
             <Box sx={{
