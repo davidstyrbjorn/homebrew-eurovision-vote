@@ -18,9 +18,11 @@ const addedButtonStyle = {
 }
 
 const LoginView: React.FC<{}> = () => {
-    const {loginAsUser} = useContext(UserContext);
+    const {loginAsUser, setIsMax} = useContext(UserContext);
     const [name, setName] = useState<string>("");
     const [foundStoredName, setFoundStoredName] = useState<boolean>(false);
+    const [secretPhrase, setSecretPhrase] = useState<string>("");
+    const SECRET = "102ep12dp3fj2ffjp4j"
 
     const onSubmit = () => {
         if(name == "") return;
@@ -33,6 +35,13 @@ const LoginView: React.FC<{}> = () => {
     // Called when the user changes name, update state
     const onNameChange = (event: any) => {
         setName(event.target.value);
+    }
+
+    const onSecretChange = (event: any) => {
+        setSecretPhrase(event.target.value);
+        if(event.target.value == SECRET){
+            setIsMax(true);
+        }
     }
 
     const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
@@ -54,6 +63,7 @@ const LoginView: React.FC<{}> = () => {
             <Typography variant="subtitle1">Please enter a username to continue</Typography>
             <TextField  sx={addedButtonStyle} id="outlined-basic"label="Username" value={name} onChange={onNameChange} variant="outlined" required/>
             <Button     sx={addedButtonStyle} variant="contained" onClick={onSubmit}>CONTINUE</Button>
+            <TextField  sx={addedButtonStyle} id="outlined-basic"label="FÖR MAX ÖGON ENDAST" value={secretPhrase} onChange={onSecretChange} variant="outlined"/>
 
             <Snackbar
                 open={foundStoredName}

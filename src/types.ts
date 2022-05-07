@@ -18,10 +18,15 @@ export type Participant = {
 export type UserContextType = {
     user: User,
     setUser: React.Dispatch<React.SetStateAction<User>>
-    loginAsUser: (name: string) => Promise<void>
+    loginAsUser: (name: string) => Promise<void>,
+    isMax: boolean,
+    setIsMax: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type ParticipantContextType = {
-    participants: Array<Participant>
-    currentlyPlaying: Participant | undefined
+    participants: Array<Participant>,
+    currentlyPlaying: Participant | undefined,
+    selectedParticipant: Participant | null,
+    setSelectedParticipant: React.Dispatch<React.SetStateAction<Participant | null>>
+
 }
