@@ -6,7 +6,6 @@ import { User, UserContextType } from "../types";
 export const UserContext = createContext<UserContextType>({
     user: {
         name: "d",
-        id: "1"
     },
     setUser: () => {}
 })
@@ -18,17 +17,12 @@ type Props = {
 export function UserProvider({children} : Props) {
     const [user, setUser] = useState<User>({
         name: "",
-        id: ""
     });
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-            if(user) {
-                console.log("Signed in user!", user);
-            }else {
-                console.log("ANON sign in for a user started!");
+            if(!user)
                 signInAnonymously(auth);
-            }
         })
     }, [])
 
