@@ -6,7 +6,7 @@ const containerStyle = {
     borderRadius: "20px",
     backgroundColor: "#fafafa",
     margin:"1rem 0.5rem",
-    padding:" 0.5rem 0.5rem",
+    padding:" 1rem 1rem",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
