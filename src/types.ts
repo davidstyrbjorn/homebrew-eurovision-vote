@@ -1,13 +1,8 @@
 import React from "react"
 
-export type Vote = {
-    country: string,
-    rating: number
-}
-
 export type User = {
     name: string,
-    votes: Vote[]
+    votes: Map<string, number> // country to rating
 }
 
 export type Participant = {
@@ -16,7 +11,8 @@ export type Participant = {
     country: string,
     language: string,
     region: string,
-    title: string
+    title: string,
+    order: number
 }
 
 export type UserContextType = {

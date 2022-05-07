@@ -7,7 +7,7 @@ import { User, UserContextType } from "../types";
 export const UserContext = createContext<UserContextType>({
     user: {
         name: "",
-        votes: []
+        votes: new Map<string, number>()
     },
     setUser: () => {},
     loginAsUser: async(name: string) => {}
@@ -20,7 +20,7 @@ type Props = {
 export function UserProvider({children} : Props) {
     const [user, setUser] = useState<User>({
         name: "",
-        votes: []
+        votes: new Map<string, number>()
     });
 
     useEffect(() => {

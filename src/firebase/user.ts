@@ -11,13 +11,24 @@ const getUserIfExists = async(name: string): Promise<User> => {
             // No user found, add a new one to the collection and return
             await addDoc(collection(db, 'users'), {
                 name,
-                votes: []
+                votes: {}
             });
-            return {name, votes: []} as User; // Return the new user with name and no votes
+            return {name, votes: {}} as User; // Return the new user with name and no votes
         }
 
+        // Convert to a map
+        const docData = querySnapshot.docs[0].data();
+        const tokensMap = docData.votes;
+        const map = new Map<string, number>();
+        Object.keys(tokensMap).forEach(e => {
+            map.set(e, tokensMap[e]);
+        }); 
+
         // Return the snapshot doc data as User type
-        return querySnapshot.docs[0].data() as User;
+        return {
+            name: docData.name,
+            votes: map
+        };
     }catch(e){
         throw new Error(`Error getUserIfExists: ${e}`);
     }
@@ -29,8 +40,15 @@ const updateVotesInUser = async(user: User) => {
         const querySnapshot = await getDocs(q);
         const docId = querySnapshot.docs[0].id;
         const userRef = doc(db, 'users', docId);
+        // Convert "Map" to Object with keys and values
+        // Why cant firebase do this instead? not sure, we do it manually
+        const objMap = {};
+        user.votes.forEach((value, key) => {
+            // @ts-ignore
+            objMap[key] = value;
+        })
         await updateDoc(userRef, {
-            votes: user.votes
+            votes: objMap,
         })
     }catch(e){
         throw new Error(`Error updating votes for user ${e}`);
