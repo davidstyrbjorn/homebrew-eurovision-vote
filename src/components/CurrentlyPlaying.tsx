@@ -17,30 +17,54 @@ const flexStyle ={
 }
 
 const containerStyle = {
+    color: "white",
     borderRadius: "20px",
-    backgroundColor: "#fafafa",
-    margin:"1rem 0.5rem",
+    background: "rgba(255, 255, 255, 0.1)",
+    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
+    backdropFilter: "blur(100px)",
+    "-webkit-backdrop-filter": "blur(5px)",
+    border: "1px solid rgba(255, 255, 255, 0.3)",
     padding:" 1rem 1rem",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+     
 }
 
+
+// const containerStyle = {
+//     color: "white",
+//     borderRadius: "20px",
+//     background: "rgba(255, 255, 255, 0.1)",
+//     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
+//     backdropFilter: "blur(100px)",
+//     "-webkit-backdrop-filter": "blur(5px)",
+//     border: "1px solid rgba(255, 255, 255, 0.3)",
+//     margin:"1rem 0.5rem",
+//     padding:" 1rem 1rem",
+//     display: "flex",
+//     flexDirection: "column",
+//     justifyContent: "center",
+// }
+
 const orderStyle = {
-    height: "100p%",
+    height: "fit-content",
     display: "flex",
-    borderRight: "6px solid #1F2B8F",
     flexDirection: "column",
     justifyContent: "center",
-    padding:"0.5rem",
-    margin:"0 0.5rem 0 0",
+    padding:"1rem",
+    margin:"0.5rem 1rem 0 0",
+    background: "#5c6bc0",
+    borderRadius:"20px",
+    color:"white",
 }
 
 type Props = {
-    participant: Participant
+    participant: Participant,
+    modal?: boolean,
 }
 
-const CurrentlyPlaying: React.FC<Props> = ({participant}) => {
+const CurrentlyPlaying: React.FC<Props> = ({participant, modal}) => {
     const {user, setUser} = useContext(UserContext);
 
     useEffect(() => {
@@ -64,23 +88,27 @@ const CurrentlyPlaying: React.FC<Props> = ({participant}) => {
     }
 
     return ( 
-        <Box sx={containerStyle}>
+        <Box sx={!modal ? {...containerStyle} : {...containerStyle, background:"#fafafa", color:"black"}}>
             <Box sx={{...flexStyle}}>
-                <Box sx={ orderStyle }>
+                <Box sx={ {...orderStyle}}>
                     <Typography sx={{ fontWeight:"bold"}} variant="h4">{toStringWithZeroPadding(participant.order+1)}</Typography>
                 </Box>
                 <Box>
-                    <Typography sx ={{color: "green", fontWeight:"bold", lineHeight:"1.2"}}variant="h5">{participant.country}</Typography>
+                    <Typography sx ={{color: "#9ccc65", fontWeight:"bold", lineHeight:"1.2"}}variant="h5">{participant.country}</Typography>
                     <Typography sx={{ fontWeight:"bold", lineHeight:"1.2"}} variant="h4">{participant.title}</Typography>
-                    <Typography sx={{lineHeight:"1.2"}}variant="subtitle1">By {participant.artist}</Typography>
+                    <Typography sx={{lineHeight:"1.2",color: "#ff9800"}}variant="subtitle1">By {participant.artist}</Typography>
                 </Box>
             </Box>
             <Box sx={{
                 borderRadius: "20px",
-                backgroundColor: "white",
-                border: "2px solid silver",
+                background: "rgba(255, 255, 255, 0.1)",
+                boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
+                backdropFilter: "blur(100px)",
+                "-webkit-backdrop-filter": "blur(5px)",
+                border: "1px solid rgba(255, 255, 255, 0.3)",
                 marginTop:"1rem",
                 padding:"0.5rem",
+                
             }}>
             <Typography variant="subtitle1" sx={{
                 textAlign:"center",
