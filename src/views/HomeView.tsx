@@ -3,10 +3,15 @@ import React, { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 import CurrentlyPlaying from "./../components/CurrentlyPlaying";
+import LoginView from "./LoginView";
 
 const HomeView: React.FC<{}> = () => {
+    const { user } = useContext(UserContext);
+
     return ( 
-        <CurrentlyPlaying />
+        <>
+            {user.name == "" ? <LoginView/> : <CurrentlyPlaying/>}        
+        </>
      );
 }
 

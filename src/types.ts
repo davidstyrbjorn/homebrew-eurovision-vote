@@ -10,11 +10,6 @@ export type User = {
     votes: Vote[]
 }
 
-export type UserContextType = {
-    user: User,
-    setUser: React.Dispatch<React.SetStateAction<User>>
-}
-
 export type Participant = {
     artist: string,
     block: string,
@@ -22,4 +17,14 @@ export type Participant = {
     language: string,
     region: string,
     title: string
+}
+
+export type UserContextType = {
+    user: User,
+    setUser: React.Dispatch<React.SetStateAction<User>>
+    loginAsUser: (name: string) => Promise<void>
+}
+
+export type ParticipantContextType = {
+    participants: Array<Participant>
 }
