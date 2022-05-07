@@ -23,4 +23,5 @@ export type UserContextType = {
 
 export type ParticipantContextType = {
     participants: Array<Participant>
+    currentlyPlaying: Participant | undefined
 }
