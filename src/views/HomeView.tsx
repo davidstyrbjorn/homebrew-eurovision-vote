@@ -10,11 +10,14 @@ import LoginView from "./LoginView";
 
 const HomeView: React.FC<{}> = () => {
     const { user } = useContext(UserContext);
-    const { participants } = useContext(ParticipantContext);
+    const { participants, currentlyPlaying } = useContext(ParticipantContext);
 
+    if(user.name == "") return <LoginView/>
     return ( 
         <>
-            {user.name == "" ? <LoginView/> : <><CurrentlyPlaying/><EntryList/></>}        
+            {currentlyPlaying && 
+                <CurrentlyPlaying participant={currentlyPlaying}/>  
+            }      
         </>
      );
 }

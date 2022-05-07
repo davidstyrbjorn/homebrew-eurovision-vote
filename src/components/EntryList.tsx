@@ -2,6 +2,9 @@ import { Button, Slider, Chip, Grid, Input, Box, TextField, Typography } from "@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { MdStar } from "react-icons/md";
+import { ParticipantContext } from "../contexts/ParticipantContext";
+import { Participant } from "../types";
+import {toStringWithZeroPadding } from "../utility";
 
 const flexStyle ={
     display: "flex",
@@ -32,30 +35,28 @@ const orderStyle = {
     margin:"0 0.5rem 0 0",
     color:"white",
     borderRadius: "18px",
-    
-    }
+}
 
-    type Entry = {
-        title: string;
-        artist: string;
-        country: string;
-    }
+type EntryProps = {
+    participant: Participant
+}
 
-const Entry: React.FC<Entry> = ({title, artist, country}) => {
-
-    
-    
+const Entry: React.FC<EntryProps> = ({participant}) => {
     return(
-        <Box sx={containerStyle}>
+        <Box sx={{...containerStyle , flexDirection:"row", justifyContent:"space-between"}}>
             <Box sx={{...flexStyle}}>
                 <Box sx={ orderStyle }>
-                    <Typography sx={{ fontWeight:"bold"}} variant="h4">01</Typography>
+                    <Typography sx={{ fontWeight:"bold"}} variant="h4">{ toStringWithZeroPadding(participant.order) }</Typography>
                 </Box>
                 <Box sx={boxStyle}>
-                    <Typography sx ={{color: "green", fontWeight:"bold", margin:"0", lineHeight: "1",}}variant="subtitle1"> Sweden</Typography>
-                    <Typography sx={{ fontWeight:"bold", lineHeight: "1",}} variant="h6">Hold me closer</Typography>
-                    <Typography sx={{  lineHeight: "1",}} variant="subtitle1">By Julia Jacobs</Typography>
+                    <Typography sx ={{color: "green", fontWeight:"bold", margin:"0", lineHeight: "1",}}variant="subtitle1">{participant.country}</Typography>
+                    <Typography sx={{ fontWeight:"bold", lineHeight: "1",}} variant="h6">{participant.title}</Typography>
+                    <Typography sx={{  lineHeight: "1",}} variant="subtitle1">{participant.artist}</Typography>
                 </Box>
+            </Box>
+
+            <Box sx={{...boxStyle, }}>
+                <Typography variant="h5" color="#E6A600" display={"flex"} sx={{ fontWeight:"bold", padding:"0 1rem", alignItems:"center"}}><MdStar/>10</Typography>
             </Box>
         </Box>
     )
@@ -71,13 +72,13 @@ const mockData = [
 ]
 
 const EntryList: React.FC<{}> = () => {
+    const { participants } = useContext(ParticipantContext);
 
-    const [entries, setEntries] = useState(mockData);
     return(
         <>
-            {entries.map((entry) => (
-                <Entry />
-            ))}   
+            {participants.map((participant: Participant) => {
+                return <Entry participant={participant} />
+            }, [])}
         </>
     )
 }
