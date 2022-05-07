@@ -1,12 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { UserProvider } from './contexts/UserContext'
-import HomeView from './contexts/views/HomeView'
+import HomeView from './views/HomeView'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+	typography: {
+	 "fontFamily": `"Roboto", "Helvetica", "Arial", sans-serif`,
+	 "fontSize": 14,
+	 "fontWeightLight": 300,
+	 "fontWeightRegular": 400,
+	 "fontWeightMedium": 500
+	}
+ });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
+		<ThemeProvider theme={theme}>
 		<UserProvider>
 			<HomeView/>
 		</UserProvider>
+		</ThemeProvider>
 	</React.StrictMode>
 )
