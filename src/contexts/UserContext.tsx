@@ -6,6 +6,7 @@ import { User, UserContextType } from "../types";
 export const UserContext = createContext<UserContextType>({
     user: {
         name: "d",
+        votes: []
     },
     setUser: () => {}
 })
@@ -17,6 +18,7 @@ type Props = {
 export function UserProvider({children} : Props) {
     const [user, setUser] = useState<User>({
         name: "",
+        votes: []
     });
 
     useEffect(() => {
