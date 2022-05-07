@@ -11,7 +11,7 @@ export const UserContext = createContext<UserContextType>({
     },
     setUser: () => {},
     loginAsUser: async(name: string) => {}
-})
+});
 
 type Props = {
     children: React.ReactElement
@@ -23,6 +23,7 @@ export function UserProvider({children} : Props) {
         votes: new Map<string, number>()
     });
 
+    // Anonmyously sign in!
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             if(!user)
@@ -30,6 +31,7 @@ export function UserProvider({children} : Props) {
         })
     }, []);
 
+    // Gets data from firestore
     const loginAsUser = async(name: string) => {
         const u = await getUserIfExists(name);
         setUser(u);

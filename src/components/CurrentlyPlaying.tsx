@@ -41,7 +41,6 @@ type Props = {
 }
 
 const CurrentlyPlaying: React.FC<Props> = ({participant}) => {
-    const [stars, setStars] = useState(0);
     const {user, setUser} = useContext(UserContext);
 
     useEffect(() => {
@@ -68,12 +67,12 @@ const CurrentlyPlaying: React.FC<Props> = ({participant}) => {
         <Box sx={containerStyle}>
             <Box sx={{...flexStyle}}>
                 <Box sx={ orderStyle }>
-                    <Typography sx={{ fontWeight:"bold"}} variant="h4">{toStringWithZeroPadding(participant.order)}</Typography>
+                    <Typography sx={{ fontWeight:"bold"}} variant="h4">{toStringWithZeroPadding(participant.order+1)}</Typography>
                 </Box>
                 <Box>
-                    <Typography sx ={{color: "green", fontWeight:"bold", lineHeight:"1.2"}}variant="h5"> Sweden</Typography>
-                    <Typography sx={{ fontWeight:"bold", lineHeight:"1.2"}} variant="h4">Hold me closer</Typography>
-                    <Typography sx={{lineHeight:"1.2"}}variant="subtitle1">By Julia Jacobs</Typography>
+                    <Typography sx ={{color: "green", fontWeight:"bold", lineHeight:"1.2"}}variant="h5">{participant.country}</Typography>
+                    <Typography sx={{ fontWeight:"bold", lineHeight:"1.2"}} variant="h4">{participant.title}</Typography>
+                    <Typography sx={{lineHeight:"1.2"}}variant="subtitle1">By {participant.artist}</Typography>
                 </Box>
             </Box>
             <Box sx={{

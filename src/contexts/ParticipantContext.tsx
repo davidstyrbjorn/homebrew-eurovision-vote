@@ -6,7 +6,9 @@ import { Participant, ParticipantContextType } from "../types";
 
 export const ParticipantContext = createContext<ParticipantContextType>({
     participants: [],
-    currentlyPlaying: undefined
+    currentlyPlaying: undefined,
+    selectedParticipant: null,
+    setSelectedParticipant: () => {}
 })
 
 type Props = {
@@ -16,6 +18,8 @@ type Props = {
 export function ParticipantProvider({children}: Props) {
     const [participants, setParticipants] = useState<Participant[]>([]);
     const [currentlyPlaying, setCurrentlyPlaying] = useState<Participant>();
+    // This is the participant the user can click on in the EntryList which will then be displayed in a modal context
+    const [selectedParticipant, setSelectedParticipant] = useState<Participant | null>(null);
 
     useEffect(() => {
         if(participants.length == 0)
@@ -41,11 +45,16 @@ export function ParticipantProvider({children}: Props) {
 
     const getParticipants = async() => {
         const p = await getParticipantsFromFirestore();
+        p.sort((a,b) => a.order < b.order ? 1 : -1);
         setParticipants(p);
     }
 
     return (
-        <ParticipantContext.Provider value={{participants, currentlyPlaying}}> 
+        <ParticipantContext.Provider value={{participants, 
+                                currentlyPlaying, 
+                                selectedParticipant,
+                                setSelectedParticipant
+        }}> 
             {children}
         </ParticipantContext.Provider>  
     )
