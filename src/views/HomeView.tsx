@@ -21,10 +21,10 @@ const HomeView: React.FC<{}> = () => {
     return ( 
         <>
             {currentlyPlaying && 
-            <>
+            <Box sx={{maxWidth:"600px", margin:"auto"}}>
                 <CurrentlyPlaying participant={currentlyPlaying}/>  
                 <EntryList/>
-            </>
+            </Box>
             }      
         </>
      );

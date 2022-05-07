@@ -19,7 +19,10 @@ const boxStyle ={
 
 const containerStyle = {
     borderRadius: "20px",
-    backgroundColor: "#fafafa",
+    backgroundColor: "#e8eaf6",
+    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
+    backdropFilter: "blur(200px)",
+    "-webkit-backdrop-filter": "blur(5px)",
     margin:"1rem 0.5rem",
     display: "flex",
     flexDirection: "column",
@@ -29,7 +32,7 @@ const containerStyle = {
 const orderStyle = {
     height: "100p%",
     display: "flex",
-    background: "#1F2B8F",
+    background: "#5c6bc0",
     flexDirection: "column",
     justifyContent: "center",
     padding:"1rem",
@@ -51,7 +54,7 @@ type EntryProps = {
 }
 
 const Entry: React.FC<EntryProps> = ({participant}) => {
-    const {user, setUser} = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const { setSelectedParticipant } = useContext(ParticipantContext);
 
     useEffect(() => {
@@ -77,14 +80,14 @@ const Entry: React.FC<EntryProps> = ({participant}) => {
                     <Typography sx={{ fontWeight:"bold"}} variant="h4">{ toStringWithZeroPadding(participant.order+1) }</Typography>
                 </Box>
                 <Box sx={boxStyle}>
-                    <Typography sx ={{color: "green", fontWeight:"bold", margin:"0", lineHeight: "1",}}variant="subtitle1">{participant.country}</Typography>
-                    <Typography sx={{ fontWeight:"bold", lineHeight: "1",}} variant="h6">{participant.title}</Typography>
-                    <Typography sx={{  lineHeight: "1",}} variant="subtitle1">{participant.artist}</Typography>
+                    <Typography sx ={{color: "#9ccc65", fontWeight:"bold", margin:"0", lineHeight: "1",}}variant="subtitle1">{participant.country}</Typography>
+                    <Typography sx ={{ color:"#263238",fontWeight:"bold", lineHeight: "1",}} variant="h6">{participant.title}</Typography>
+                    <Typography sx ={{  lineHeight: "1", color:"#fb8c00"}} variant="subtitle1">{participant.artist}</Typography>
                 </Box>
             </Box>
 
             <Box sx={{...boxStyle, }}>
-                <Typography variant="h5" color="#E6A600" display={"flex"} sx={{ fontWeight:"bold", padding:"0 1rem", alignItems:"center"}}><MdStar/>
+                <Typography variant="h5" color="#ffc107" display={"flex"} sx={{ fontWeight:"bold", padding:"0 1rem", alignItems:"center"}}><MdStar/>
                     {user.votes.get(participant.country) ?? 5}
                 </Typography>
             </Box>
@@ -124,7 +127,7 @@ const EntryList: React.FC = () => {
                 onClose={handleModalClose}
             >
                 <Box sx={style}>
-                    <CurrentlyPlaying participant={selectedParticipant!}/>
+                    <CurrentlyPlaying participant={selectedParticipant!} modal/>
                 </Box>
             </Modal>
         </>
