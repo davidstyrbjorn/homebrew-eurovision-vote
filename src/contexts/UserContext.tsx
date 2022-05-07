@@ -1,14 +1,16 @@
 import { signInAnonymously } from "@firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase.config";
+import { getUserIfExists } from "../firebase/user";
 import { User, UserContextType } from "../types";
 
 export const UserContext = createContext<UserContextType>({
     user: {
-        name: "d",
+        name: "",
         votes: []
     },
-    setUser: () => {}
+    setUser: () => {},
+    loginAsUser: async(name: string) => {}
 })
 
 type Props = {
@@ -26,10 +28,15 @@ export function UserProvider({children} : Props) {
             if(!user)
                 signInAnonymously(auth);
         })
-    }, [])
+    }, []);
+
+    const loginAsUser = async(name: string) => {
+        const u = await getUserIfExists(name);
+        setUser(u);
+    }
 
     return (
-        <UserContext.Provider value={{user, setUser}}>
+        <UserContext.Provider value={{user, setUser, loginAsUser}}>
             {children}
         </UserContext.Provider>
         

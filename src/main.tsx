@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { UserProvider } from './contexts/UserContext'
 import HomeView from './views/HomeView'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ParticipantProvider } from './contexts/ParticipantContext';
 
 const theme = createTheme({
 	typography: {
@@ -17,9 +18,11 @@ const theme = createTheme({
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
-		<UserProvider>
-			<HomeView/>
-		</UserProvider>
+			<UserProvider>
+				<ParticipantProvider>
+					<HomeView/>
+				</ParticipantProvider>
+			</UserProvider>
 		</ThemeProvider>
 	</React.StrictMode>
 )
