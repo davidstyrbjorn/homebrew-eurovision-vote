@@ -1,6 +1,7 @@
 import { signInAnonymously } from "@firebase/auth";
+import { collection, doc, onSnapshot, query, where } from "@firebase/firestore";
 import React, { createContext, useEffect, useState } from "react";
-import { auth } from "../firebase.config";
+import { auth, db } from "../firebase.config";
 import { getUserIfExists } from "../firebase/user";
 import { User, UserContextType } from "../types";
 
@@ -9,6 +10,7 @@ export const UserContext = createContext<UserContextType>({
         name: "",
         votes: new Map<string, number>()
     },
+    users: [],
     setUser: () => {},
     loginAsUser: async(name: string) => {},
     isMax: false,
@@ -24,13 +26,20 @@ export function UserProvider({children} : Props) {
         votes: new Map<string, number>()
     });
     const [isMax, setIsMax] = useState<boolean>(false);
+    const [users, setUsers] = useState<User[]>([]);
 
-    // Anonmyously sign in!
     useEffect(() => {
+        // Anonmyously sign in!
         auth.onAuthStateChanged((user) => {
             if(!user)
                 signInAnonymously(auth);
-        })
+        });
+
+        const q = query(collection(db, "users"));
+        const unsub = onSnapshot(q, (snapshot) => {
+            setUsers(snapshot.docs.map((doc) => {return doc.data() as User}));
+        });
+        return unsub;
     }, []);
 
     // Gets data from firestore
@@ -40,7 +49,7 @@ export function UserProvider({children} : Props) {
     }
 
     return (
-        <UserContext.Provider value={{user, setUser, loginAsUser, isMax, setIsMax}}>
+        <UserContext.Provider value={{user, setUser, loginAsUser, isMax, setIsMax, users}}>
             {children}
         </UserContext.Provider>
         

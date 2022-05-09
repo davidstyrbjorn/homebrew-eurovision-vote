@@ -22,7 +22,7 @@ const containerStyle = {
     backgroundColor: "#e8eaf6",
     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
     backdropFilter: "blur(200px)",
-    "-webkit-backdrop-filter": "blur(5px)",
+    WebkitBackdropFilter: "blur(5px)",
     margin:"1rem 0.5rem",
     display: "flex",
     flexDirection: "column",

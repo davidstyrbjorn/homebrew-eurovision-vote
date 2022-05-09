@@ -55,4 +55,14 @@ const updateVotesInUser = async(user: User) => {
     }
 }
 
-export {getUserIfExists, updateVotesInUser}
+const getAllUsers = async(): Promise<User[]> => {
+    const querySnapshot = await getDocs(collection(db, 'users'));
+    const result: User[] = [];
+    querySnapshot.forEach((doc) => {
+        result.push(doc.data() as User);
+    });
+    
+    return result;
+}
+
+export { getUserIfExists, updateVotesInUser, getAllUsers }

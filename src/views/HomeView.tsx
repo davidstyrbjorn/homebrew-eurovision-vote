@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React, { useContext } from "react";
 import { ParticipantContext } from "../contexts/ParticipantContext";
 import { UserContext } from "../contexts/UserContext";
@@ -15,10 +16,10 @@ const HomeView: React.FC<{}> = () => {
     return ( 
         <>
             {currentlyPlaying && 
-            <Box sx={{maxWidth:"600px", margin:"auto"}}>
-                <CurrentlyPlaying participant={currentlyPlaying}/>  
-                <EntryList/>
-            </Box>
+                <Box sx={{maxWidth:"600px", margin:"auto"}}>
+                    <CurrentlyPlaying participant={currentlyPlaying}/>  
+                    <EntryList/>
+                </Box>
             }      
         </>
      );

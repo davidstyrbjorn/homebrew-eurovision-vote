@@ -20,7 +20,8 @@ export type UserContextType = {
     setUser: React.Dispatch<React.SetStateAction<User>>
     loginAsUser: (name: string) => Promise<void>,
     isMax: boolean,
-    setIsMax: React.Dispatch<React.SetStateAction<boolean>>
+    setIsMax: React.Dispatch<React.SetStateAction<boolean>>,
+    users: User[]
 }
 
 export type ParticipantContextType = {
