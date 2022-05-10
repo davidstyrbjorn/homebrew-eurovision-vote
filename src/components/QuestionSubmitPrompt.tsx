@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { MdTimer } from "react-icons/md";
 import { QuestionContext } from "../contexts/QuestionContext";
 
+
 const containerStyle: SxProps<Theme> = {
     color: "white",
     borderRadius: "20px",
@@ -30,11 +31,18 @@ const style = {
 };
 
 const QuestionSubmitPrompt: React.FC = () => {
-    const {questionPrompt, submitAnswer} = useContext(QuestionContext);
+    const {questionPrompt, submitAnswer, questionActive} = useContext(QuestionContext);
     const [answer, setAnswer] = useState("");
     const [group, setGroup] = useState("");
 
+  
+
+    const [remove, setRemove] = useState(false);
+
     const onSubmit = () => {
+
+        setRemove(!remove);
+
         submitAnswer({
             answer,
             groupName: group,
@@ -42,7 +50,7 @@ const QuestionSubmitPrompt: React.FC = () => {
         });
     }
     return (
-        <Box sx={containerStyle} >
+        <Box className={questionActive ? "question": "question-out" } sx={containerStyle} >
 
             <Box sx={{display:"flex", justifyContent:"space-between"}}>
                 <Typography variant="h4" sx={{ fontWeight:'bold'}}><MdTimer style={style} />Question!</Typography>
