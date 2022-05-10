@@ -1,24 +1,34 @@
 import { ExpandCircleDown } from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Grid, List, ListItem, ListItemText, TextField, Typography } from '@mui/material';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ParticipantContext } from '../contexts/ParticipantContext';
 import { UserContext } from '../contexts/UserContext';
-import { updateCurrentlyPlaying } from '../firebase/admin';
+import { activateQuestion, deactivateQuestion, updateCurrentlyPlaying } from '../firebase/admin';
 import { Participant, User } from '../types';
 
 const containerStyle = {
-    borderRadius: "20px",
-    backgroundColor: "#fafafa",
     margin:"3rem 3rem",
     padding:" 1rem 1rem",
+
+}
+
+const top = {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
+    borderRadius: "20px",
+
 }
 
 const AdminView: React.FC = () => {
     const {participants, currentlyPlaying} = useContext(ParticipantContext);
     const {users} = useContext(UserContext);
+    // Allowed time to answer, used when submitting a question
+    const [duration, setDuration] = useState<number>(30);
+
+    const handleOnQuestionSubmit = () => {
+        activateQuestion(duration);
+    }
 
     const participantEntry = (p: Participant, i: number) => {
         const isCurrentlyPlaying = currentlyPlaying && (currentlyPlaying.country == p.country)
@@ -61,13 +71,20 @@ const AdminView: React.FC = () => {
 
     const getQuestionView = () => {
         return (
-            <TextField></TextField>
+            <Box bgcolor={'white'} marginTop={16} padding={4} display='flex' justifyContent={'space-around'}>
+                <Box>
+                    <Typography>Antal Sekunder: </Typography>
+                    <TextField value={duration} onChange={(e) => setDuration(Number.parseInt(e.target.value ?? 0))} type={'number'} />
+                </Box>
+                <Button size='large' color='success' variant='contained' onClick={() => handleOnQuestionSubmit()}>SKICKA</Button>
+                <Button size='large' color='error' variant='contained' onClick={() => deactivateQuestion()}>STÄNG AV</Button>
+            </Box>
         )
     }
 
     return (
-        <Box>
-            <Box sx={containerStyle}>
+        <Box sx={containerStyle}>
+            <Box sx={top}>
                 <Box>
                     <Typography textAlign={'center'} variant='h4'>NUVARANDE LÅT</Typography>
                     {/* Section for selecting nuvarande låt */}

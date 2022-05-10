@@ -8,4 +8,20 @@ const updateCurrentlyPlaying = async (currentlyPlaying: string) => {
     });
 }
 
-export {updateCurrentlyPlaying};
+const activateQuestion = async(duration: number) => {
+    const ref = doc(db, "admin", "admin");
+    await updateDoc(ref, {
+        questionActive: true,
+        allowedSecondsToAnswer: duration,
+        questionStartTime: Date.now(),
+    })
+}
+
+const deactivateQuestion = async() => {
+    const ref = doc(db, "admin", "admin");
+    await updateDoc(ref, {
+        questionActive: false,
+    })
+}
+
+export {updateCurrentlyPlaying, activateQuestion, deactivateQuestion};

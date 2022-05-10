@@ -34,12 +34,12 @@ export type ParticipantContextType = {
 export type QuestionSubmission = {
     answer: string,
     groupName: string,
-    submitTime: Date
+    timeRemaining: number
 }
 
 export type QuestionContextType = {
     questionActive: boolean,
-    questionPrompt: string,
     questionStartTime: number,
+    allowedSecondsToAnswer: number,
     submitAnswer: (qs: QuestionSubmission) => void,
 }

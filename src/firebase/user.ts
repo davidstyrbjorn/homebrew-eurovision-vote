@@ -1,7 +1,7 @@
 import { addDoc, collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from "@firebase/firestore"
 import { stringToByteArray } from "@firebase/util";
 import { db } from "../firebase.config"
-import { User } from "../types"
+import { QuestionSubmission, User } from "../types"
 
 // If the name exists return the firestore document, if not, create a new instance for that user
 const getUserIfExists = async(name: string): Promise<User> => {
