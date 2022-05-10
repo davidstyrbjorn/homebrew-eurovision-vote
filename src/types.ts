@@ -29,5 +29,17 @@ export type ParticipantContextType = {
     currentlyPlaying: Participant | undefined,
     selectedParticipant: Participant | null,
     setSelectedParticipant: React.Dispatch<React.SetStateAction<Participant | null>>
+}
 
+export type QuestionSubmission = {
+    answer: string,
+    groupName: string,
+    submitTime: Date
+}
+
+export type QuestionContextType = {
+    questionActive: boolean,
+    questionPrompt: string,
+    questionStartTime: number,
+    submitAnswer: (qs: QuestionSubmission) => void,
 }

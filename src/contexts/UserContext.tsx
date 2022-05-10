@@ -3,7 +3,7 @@ import { collection, doc, onSnapshot, query, where } from "@firebase/firestore";
 import React, { createContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase.config";
 import { getUserIfExists } from "../firebase/user";
-import { User, UserContextType } from "../types";
+import { Participant, User, UserContextType } from "../types";
 
 export const UserContext = createContext<UserContextType>({
     user: {
@@ -42,8 +42,8 @@ export function UserProvider({children} : Props) {
         return unsub;
     }, []);
 
-    // Gets data from firestore
     const loginAsUser = async(name: string) => {
+        // Gets data from firestore, or creates a new user and returns
         const u = await getUserIfExists(name);
         setUser(u);
     }

@@ -1,5 +1,6 @@
 import { Button, Slider, Chip, Grid, Input, Box, TextField, Typography, Snackbar, Alert } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
+import { ParticipantContext } from "../contexts/ParticipantContext";
 import { UserContext } from "../contexts/UserContext";
 
 const containerStyle = {
