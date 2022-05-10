@@ -17,13 +17,6 @@ const HomeView: React.FC<{}> = () => {
     if(isMax) return <AdminView/>
     if(user.name == "") return <LoginView/>
     return ( 
-
-        
-
-
-
-
-
         <>
             {currentlyPlaying && 
                 <Box sx={{maxWidth:"600px", margin:"auto"}}>

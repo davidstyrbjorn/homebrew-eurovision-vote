@@ -1,5 +1,6 @@
-import { Box, Button, SxProps, TextField, Theme, Typography } from "@mui/material";
+import { Box, Button, SxProps, TextField, Theme, Typography, LinearProgress } from "@mui/material";
 import React, { useContext, useState } from "react";
+import { MdTimer } from "react-icons/md";
 import { QuestionContext } from "../contexts/QuestionContext";
 
 const containerStyle: SxProps<Theme> = {
@@ -10,6 +11,7 @@ const containerStyle: SxProps<Theme> = {
     backdropFilter: "blur(100px)",
     WebkitBackdropFilter:  "blur(5px)",
     border: "1px solid rgba(255, 255, 255, 0.3)",
+    margin: "1rem 0.5rem",
     padding:" 1rem 1rem 1rem",
     marginBottom: "1rem",
     display: "flex",
@@ -23,6 +25,10 @@ const addedButtonStyle = {
     color: 'white'
 }
 
+const style = {
+    transform: 'translate(-10%, 14%)',
+};
+
 const QuestionSubmitPrompt: React.FC = () => {
     const {questionPrompt, submitAnswer} = useContext(QuestionContext);
     const [answer, setAnswer] = useState("");
@@ -35,13 +41,17 @@ const QuestionSubmitPrompt: React.FC = () => {
             submitTime: new Date()
         });
     }
-
     return (
         <Box sx={containerStyle} >
-            <Typography variant="h4" sx={{ fontWeight:'bold'}}>RIDDLE ME THIS</Typography>
-            <Typography variant="h6">{questionPrompt}</Typography>
-            <TextField sx={addedButtonStyle} value={answer} onChange={(e) => setAnswer(e.target.value)} id="outlined-basic"label="Answer" variant="outlined" required/>
-            <TextField sx={addedButtonStyle} value={group} onChange={(e) => setGroup(e.target.value)} id="outlined-basic"label="Group Name" variant="outlined" required/>
+
+            <Box sx={{display:"flex", justifyContent:"space-between"}}>
+                <Typography variant="h4" sx={{ fontWeight:'bold'}}><MdTimer style={style} />Question!</Typography>
+                <Typography variant="h4" >30s</Typography>
+            </Box>
+
+            <LinearProgress variant="determinate" value={36} sx={{margin:"1rem 0", paddin:"1rem"}} />
+            <TextField color='primary' sx={{...addedButtonStyle, background:"white"}} value={answer} onChange={(e) => setAnswer(e.target.value)} id="outlined-basic"label="Answer" variant="filled" required/>
+            <TextField sx={{...addedButtonStyle, background:"white"}} value={group} onChange={(e) => setGroup(e.target.value)} id="outlined-basic"label="Group Name" variant="filled" required/>
             <Button    sx={addedButtonStyle} variant="contained" onClick={() => onSubmit()}>SEND</Button>
         </Box>
     )
