@@ -68,15 +68,11 @@ type Props = {
 const CurrentlyPlaying: React.FC<Props> = ({participant, modal}) => {
     const {user, setUser} = useContext(UserContext);
 
-    useEffect(() => {
-        // Check if the user has voted for this country
-        if(user && !user.votes.has(participant.country)){
-            // Copy map, add, and set state
-            const copy = new Map(user.votes);
-            copy.set(participant.country, 5);
-            setUser({...user, votes: copy});
-        }
-    }, []);
+    const getRating = () => {
+        if(user.votes.get)
+            return user.votes.get(participant.country) ?? 5;
+        return 5;
+    }
 
     const onSliderChange = (e: any) => {
         // Grab slider value
@@ -117,7 +113,9 @@ const CurrentlyPlaying: React.FC<Props> = ({participant, modal}) => {
             }}>What did you think about this entry?</Typography>
                 <Box sx={flexStyle}>
                     <Typography variant="h4" color="#E6A600" display={"flex"} sx={{ fontWeight:"bold"}} width="120px"><MdStar/>
-                        {user.votes.get(participant.country) ?? 5}
+                        {
+                        getRating()
+                        }
                     </Typography>
                     <Slider 
                         sx={{
@@ -125,7 +123,7 @@ const CurrentlyPlaying: React.FC<Props> = ({participant, modal}) => {
                             color:"#E6A600",
                         }}
                         onChange={onSliderChange}
-                        value={user.votes.get(participant.country) ?? 5}
+                        value={getRating()}
                         onChangeCommitted={(_e) => {updateVotesInUser(user)}}
                         aria-label="Vote"
                         defaultValue={5}

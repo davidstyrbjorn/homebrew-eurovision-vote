@@ -1,4 +1,5 @@
 import { addDoc, collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from "@firebase/firestore"
+import { stringToByteArray } from "@firebase/util";
 import { db } from "../firebase.config"
 import { User } from "../types"
 
@@ -13,7 +14,7 @@ const getUserIfExists = async(name: string): Promise<User> => {
                 name,
                 votes: {}
             });
-            return {name, votes: {}} as User; // Return the new user with name and no votes
+            return {name, votes: new Map<string, number>()} as User;
         }
 
         // Convert to a map

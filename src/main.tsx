@@ -1,9 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { UserProvider } from './contexts/UserContext'
-import HomeView from './views/HomeView'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import { ParticipantProvider } from './contexts/ParticipantContext';
+import { QuestionProvider } from './contexts/QuestionContext';
+import { UserProvider } from './contexts/UserContext';
+import './style.scss';
+import HomeView from './views/HomeView';
 
 
 const theme = createTheme({
@@ -16,15 +18,14 @@ const theme = createTheme({
 	}
 });
 
-import './style.scss';
-
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
 			<UserProvider>
 				<ParticipantProvider>
-					<HomeView/>
+					<QuestionProvider>
+						<HomeView/>
+					</QuestionProvider>
 				</ParticipantProvider>
 			</UserProvider>
 		</ThemeProvider>
