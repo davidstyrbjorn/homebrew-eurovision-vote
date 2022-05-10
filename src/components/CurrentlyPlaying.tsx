@@ -25,6 +25,7 @@ const containerStyle = {
     WebkitBackdropFilter:  "blur(5px)",
     border: "1px solid rgba(255, 255, 255, 0.3)",
     padding:" 1rem 1rem",
+    margin:"0.5rem 0.5rem",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -54,7 +55,7 @@ const orderStyle = {
     justifyContent: "center",
     padding:"1rem",
     margin:"0.5rem 1rem 0 0",
-    background: "#5c6bc0",
+    background: "#2196f3",
     borderRadius:"20px",
     color:"white",
 }

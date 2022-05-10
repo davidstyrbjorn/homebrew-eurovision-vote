@@ -23,7 +23,7 @@ const containerStyle = {
     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
     backdropFilter: "blur(200px)",
     WebkitBackdropFilter: "blur(5px)",
-    margin:"1rem 0.5rem",
+    margin:"0.5rem 0.5rem",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -32,17 +32,17 @@ const containerStyle = {
 const orderStyle = {
     height: "100p%",
     display: "flex",
-    background: "#5c6bc0",
+    background: "#2196f3",
     flexDirection: "column",
     justifyContent: "center",
-    padding:"1rem",
+    padding:"0rem",
     margin:"0 0.5rem 0 0",
     color:"white",
-    borderRadius: "18px",
+    borderRadius: "20px",
 }
 
 const style = {
-    position: 'absolute' as 'absolute',
+    position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -77,17 +77,16 @@ const Entry: React.FC<EntryProps> = ({participant}) => {
         >
             <Box sx={{...flexStyle}}>
                 <Box sx={ orderStyle }>
-                    <Typography sx={{ fontWeight:"bold"}} variant="h4">{ toStringWithZeroPadding(participant.order+1) }</Typography>
+                    <Typography sx={{ fontWeight:"bold", fontSize:"2rem", padding:"1rem"}} variant="h4">{ toStringWithZeroPadding(participant.order+1) }</Typography>
                 </Box>
                 <Box sx={boxStyle}>
-                    <Typography sx ={{color: "#9ccc65", fontWeight:"bold", margin:"0", lineHeight: "1",}}variant="subtitle1">{participant.country}</Typography>
-                    <Typography sx ={{ color:"#263238",fontWeight:"bold", lineHeight: "1",}} variant="h6">{participant.title}</Typography>
-                    <Typography sx ={{  lineHeight: "1", color:"#fb8c00"}} variant="subtitle1">{participant.artist}</Typography>
+                    <Typography sx ={{color:"#ff6d00",fontWeight:"bold", margin:"0", lineHeight: "1",}}variant="subtitle1">{participant.country}</Typography>
+                    <Typography sx ={{ color:"#263238",fontWeight:"bold", lineHeight: "1",}} variant="h5">{participant.title}</Typography>
+                    <Typography sx ={{ lineHeight: "1"}} variant="subtitle1">{participant.artist} </Typography>
                 </Box>
             </Box>
-
             <Box sx={{...boxStyle, }}>
-                <Typography variant="h5" color="#ffc107" display={"flex"} sx={{ fontWeight:"bold", padding:"0 1rem", alignItems:"center"}}><MdStar/>
+                <Typography variant="h5" color="#ffb300" display={"flex"} sx={{ fontWeight:"bold", padding:"0 1rem", alignItems:"center"}}><MdStar/>
                     {user.votes.get(participant.country) ?? 5}
                 </Typography>
             </Box>
@@ -118,7 +117,7 @@ const EntryList: React.FC = () => {
     }
 
     return(
-        <>
+        <Box sx={{background:"white", padding:"1px", minHeight: "60vh"}}>
             {previouslyPlayedParticipants.map((participant: Participant, i: number) => {
                 return <Entry key={i} participant={participant} />
             }, [])}
@@ -130,7 +129,7 @@ const EntryList: React.FC = () => {
                     <CurrentlyPlaying participant={selectedParticipant!} modal/>
                 </Box>
             </Modal>
-        </>
+        </Box>
     )
 }
 
