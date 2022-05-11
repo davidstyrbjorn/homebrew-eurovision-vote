@@ -43,3 +43,11 @@ export type QuestionContextType = {
     allowedSecondsToAnswer: number,
     submitAnswer: (qs: QuestionSubmission) => void,
 }
+
+export type FirebaseResult = {
+    code?: number,
+    message?: string
+}
+
+export type KEY = 'racist' | 'drunk';
+export const ACHIEVMENT_KEYS: Array<KEY> = ['racist', 'drunk']
