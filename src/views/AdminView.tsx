@@ -46,6 +46,8 @@ const AdminView: React.FC = () => {
     }
 
     const userEntry = (u: User, i: number) => {
+        const numberOfCountries = participants.length;
+        const numberOfVotes = Object.entries(u.votes).length
         return (
             <Box key={i}>
                 <ListItem sx={{width: "100%"}}>
@@ -53,7 +55,7 @@ const AdminView: React.FC = () => {
                         <AccordionSummary
                             expandIcon={<ExpandCircleDown/>}
                         >
-                            <Typography>{u.name}</Typography>
+                            <Typography>{u.name} Antal: {numberOfVotes} / {numberOfCountries}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             {/* LIST ALL VOTES FOR THIS USER */}

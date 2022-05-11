@@ -10,7 +10,9 @@ and then stores that away somewhere? probably in the admin collection and then
 we could have the getAchievment function just load the array of winners for that key!
 */
 
-import { ACHIEVMENT_KEYS, FirebaseResult, KEY, Participant, User } from "../types";
+import { doc, setDoc, updateDoc } from "@firebase/firestore";
+import { db } from "../firebase.config";
+import { Achievment, ACHIEVMENTS, FirebaseResult, KEY, Participant, PlayerAndScore, User } from "../types";
 import { keyToFunctionAchievment } from "./achievment_calculations";
 
 // "Statically" pre-calc all achievment results and store them in firebase for later usage
@@ -18,13 +20,21 @@ const calculateAllAchievments = async(): Promise<FirebaseResult> => {
     // Load all participants and users
     const participants: Participant[] = [];
     const users: User[] = [];
+    const achievmentMap = new Map<KEY, PlayerAndScore[]>();
 
     // For each achievment key, call the corresponding function, passing participants + users
     Promise.all([
-        ACHIEVMENT_KEYS.forEach(async(key) => {
-            const result = await keyToFunctionAchievment.get(key)!(participants, users);
+        ACHIEVMENTS.forEach(async(ach) => {
+            const result = keyToFunctionAchievment.get(ach.key)!(participants, users);
+            achievmentMap.set(ach.key, result); // Insert into our map
         })
     ]);
+
+    // Push the map to DB
+    const ref = doc(db, "admin", "admin");
+    await updateDoc(ref, {
+        achievements: achievmentMap
+    })
 
     // If we got here everyrhing went well!
     return {
@@ -37,3 +47,4 @@ const getAchievmentWinners = async(key: KEY): Promise<string[]> => {
 }
 
 export { calculateAllAchievments, getAchievmentWinners };
+
