@@ -20,35 +20,40 @@ body, head {
   font-size: 52px;
 }
 
-// @keyframes slideIn {
-//   0% {
-//     transform: translateX(-110%);
-//     opacity: 0;
-//   }
-//   100% {
-//     opacity: 1;
-//     transform: translateX(0);
-//   }
-// }
+@keyframes slideIn {
+  0% {
+    transform: translateX(calc(-100vh));
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
-// @keyframes slideOut {
-//   0% {
-//     opacity: 1;
-//     transform: translateX(0);
-//   }
-//   100% {
-//     transform: translateX(300%);
-//     position:absolute;
-//     opacity: 0;
-//   }
-// }
-// .question {  
-//   animation: 1s ease-out 0s 1 slideIn forwards;
-// }
-// .question-out {  
-//   animation: 1s ease-out 0s 1 slideOut forwards;
-// }
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100vh));
+    opacity: 0;
+  }
+}
+.question {
+  opacity: 0;
+  animation: 1s ease-out 0s 1 slideIn forwards;
+  animation-delay: 1s;
+}
+.question-out {
+  animation: 1s ease-out 0s 1 slideOut forwards;
+}
 
+.questionRoom {
+  transition: margin-top 0.5s ease 1s;
+  transition-delay: 1s;
+}
 
 head::before, head::after,
 body::before, body::after {
