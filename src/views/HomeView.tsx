@@ -8,12 +8,16 @@ import CurrentlyPlaying from "./../components/CurrentlyPlaying";
 import EntryList from "./../components/EntryList";
 import AdminView from "./AdminView";
 import LoginView from "./LoginView";
+import AchievementView from "./AchievementView";
+
+
 
 const HomeView: React.FC<{}> = () => {
     const { user, isMax } = useContext(UserContext);
     const { currentlyPlaying } = useContext(ParticipantContext);
     const { questionActive } = useContext(QuestionContext);
 
+    if(true) return <AchievementView/>
     if(isMax) return <AdminView/>
     if(user.name == "") return <LoginView/>
     return ( 
