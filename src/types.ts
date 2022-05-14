@@ -44,6 +44,12 @@ export type QuestionContextType = {
     submitAnswer: (qs: QuestionSubmission) => void,
 }
 
+export type AchievmentContextType = {
+    achievmentsMap: Map<KEY, PlayerAndScore[]>,
+    currentKey: KEY,
+    switchKey: (key: KEY) => void
+}
+
 export type FirebaseResult = {
     code?: number,
     message?: string

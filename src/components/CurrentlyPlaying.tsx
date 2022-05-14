@@ -6,6 +6,7 @@ import { Participant } from "../types";
 import { fillUserVotes, updateVotesInUser } from "../firebase/user";
 import { toStringWithZeroPadding } from "../utility";
 import { ParticipantContext } from "../contexts/ParticipantContext";
+import { calculateAllAchievments } from "../firebase/achievments";
 
 const boxStyle ={
     display: "flex",
@@ -109,7 +110,7 @@ const CurrentlyPlaying: React.FC<Props> = ({participant, modal}) => {
                 padding:"0.5rem",
                 
             }}>
-            {/* <Button onClick={() => fillUserVotes(user, participants)}>VOTES PUSH</Button> */}
+            <Button onClick={() => calculateAllAchievments()}>VOTES PUSH</Button>
             <Typography variant="subtitle1" sx={{
                 textAlign:"center",
             }}>What did you think about this entry?</Typography>

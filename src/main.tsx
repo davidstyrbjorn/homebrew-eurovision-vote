@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { AchievmentProvider } from './contexts/AchievmentsContext';
 import { ParticipantProvider } from './contexts/ParticipantContext';
 import { QuestionProvider } from './contexts/QuestionContext';
 import { UserProvider } from './contexts/UserContext';
@@ -24,7 +25,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 			<UserProvider>
 				<ParticipantProvider>
 					<QuestionProvider>
-						<HomeView/>
+						<AchievmentProvider>
+							<HomeView/>
+						</AchievmentProvider>
 					</QuestionProvider>
 				</ParticipantProvider>
 			</UserProvider>

@@ -1,11 +1,12 @@
 import { ExpandCircleDown } from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Grid, List, ListItem, ListItemText, TextField, Typography } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
+import { AchievmentsContext } from '../contexts/AchievmentsContext';
 import { ParticipantContext } from '../contexts/ParticipantContext';
 import { UserContext } from '../contexts/UserContext';
 import { calculateAllAchievments } from '../firebase/achievments';
 import { activateQuestion, deactivateQuestion, updateCurrentlyPlaying } from '../firebase/admin';
-import { Participant, User } from '../types';
+import { ACHIEVMENTS, Participant, User } from '../types';
 
 const containerStyle = {
     margin:"3rem 3rem",
@@ -26,6 +27,7 @@ const AdminView: React.FC = () => {
     const {users} = useContext(UserContext);
     // Allowed time to answer, used when submitting a question
     const [duration, setDuration] = useState<number>(30);
+    const {switchKey, currentKey} = useContext(AchievmentsContext);
 
     const handleOnQuestionSubmit = () => {
         activateQuestion(duration);
@@ -87,8 +89,11 @@ const AdminView: React.FC = () => {
 
     const getAchievmentsView = () => {
         return (
-            <Box bgcolor={'white'} marginTop={16} padding={4} display='flex' justifyContent={'space-around'}>
+            <Box bgcolor={'white'} marginTop={16} padding={4} display='flex' justifyContent={'space-around'} flexDirection={'column'}>
                 <Button size='large' color='warning' variant='contained' onClick={() => calculateAllAchievments()}>BERÄKNA ACHIEVMENTS (KAN TA NÅGRA SEKUNDER)</Button>
+                {ACHIEVMENTS.map(ach => {
+                    return <Button color={ach.key == currentKey ? 'primary' : 'secondary'}>{ach.key}</Button>
+                })}
             </Box>
         )
     }

@@ -17,7 +17,7 @@ const HomeView: React.FC<{}> = () => {
     const { currentlyPlaying } = useContext(ParticipantContext);
     const { questionActive } = useContext(QuestionContext);
 
-    if(true) return <AchievementView/>
+    // if(true) return <AchievementView/>
     if(isMax) return <AdminView/>
     if(user.name == "") return <LoginView/>
     return ( 
@@ -26,7 +26,7 @@ const HomeView: React.FC<{}> = () => {
                 <Box sx={{maxWidth:"600px", margin:"auto", overflowX:"hidden"}}>
                     <QuestionSubmitPrompt/>
                     <Typography className="questionRoom" variant="subtitle1" color="white" padding="1rem 1rem 0rem 1rem" marginTop={questionActive ? "0":"-340px"}>Currently Playing</Typography>
-                    <CurrentlyPlaying participant={currentlyPlaying}/>  
+                    <CurrentlyPlaying participant={currentlyPlaying!}/>  
                     <Typography variant="subtitle1" color="white" padding="1rem 1rem 0rem 1rem">Previously Played</Typography>
                     <EntryList/>
                 </Box>

@@ -78,7 +78,7 @@ const QuestionSubmitPrompt: React.FC = () => {
         <>
         <Box className={questionActive ? "question": "question-out" } sx={containerStyle} >
             <Box sx={{display:"flex", justifyContent:"space-between"}}>
-                <Typography variant="h4" sx={{ fontWeight:'bold'}}><MdTimer style={style} />MAX DEMANDS</Typography>
+                <Typography variant="h4" sx={{ fontWeight:'bold'}}><MdTimer style={style} />SVARA!</Typography>
                 <Typography variant="h4" >{timeRemaining}s</Typography>
             </Box>
 

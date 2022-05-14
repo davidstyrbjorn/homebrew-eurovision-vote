@@ -28,9 +28,6 @@ const iconStyle = {
 }
 
 const AchievementView: React.FC<{}> = () => {
-    
-
-
 
     const toFadeOut = false;
     return ( 

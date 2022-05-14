@@ -202,7 +202,7 @@ const yugoslavien = (participants: Participant[], users: User[])
         // Go through each participant, get total score given, then save
         participants.forEach(p => {
             // Only take songs that are in the group "YUGOSLAVIEN "
-            if(p.block.toLocaleLowerCase() == 'YUGOSLAVIEN ') 
+            if(p.block == 'YUGOSLAVIEN ') 
                 newTotal.score += users[i].votes.get(p.country)!;
         });
         playersAndTheirTotal.push(newTotal);
