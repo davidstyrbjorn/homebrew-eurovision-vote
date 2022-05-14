@@ -13,10 +13,11 @@ import AchievementView from "./AchievementView";
 
 
 const HomeView: React.FC<{}> = () => {
-    const { user, isMax } = useContext(UserContext);
+    const { user, isMax, isAch } = useContext(UserContext);
     const { currentlyPlaying } = useContext(ParticipantContext);
     const { questionActive } = useContext(QuestionContext);
 
+    if(isAch) return <AchievementView/>
     if(isMax) return <AdminView/>
     if(user.name == "") return <LoginView/>
     return ( 

@@ -220,7 +220,7 @@ const worstTaste = (participants: Participant[], users: User[])
     const maxName = "max";
     // Find max from users and extract
     const indexMax = users.findIndex(u => u.name == maxName);
-    const max = users.splice(indexMax)[0];
+    const max = [...users].splice(indexMax)[0];
 
     // Calculate max total
     let maxTotal = 0;

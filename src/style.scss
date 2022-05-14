@@ -68,6 +68,9 @@ body, head {
   }
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
 
 .trigger-pedistal{
   animation: firstplace 2s ease-out 1 forwards;
@@ -76,18 +79,18 @@ body, head {
 .first{
   color:gold;
   opacity: 0;
-  animation-delay: 20s;
+  animation-delay: 17.5s;
   vertical-align: middle;
 }
 .second{
   opacity: 0;
-  animation-delay: 15s;
+  animation-delay: 12.5s;
   color:silver;
   vertical-align: middle;
 }
 .third{
   opacity: 0;
-  animation-delay: 10s;
+  animation-delay: 5s;
   color:rgb(206, 160, 75);
   vertical-align: middle;
 }
@@ -125,8 +128,9 @@ body, head {
   animation: fadeOut 2s ease-out 0s 1 forwards;
 }
 
-
-
+.trigger-fade-in {
+  animation: fadeIn 2s ease-out 0s 1 forwards;
+}
 
 head::before, head::after,
 body::before, body::after {

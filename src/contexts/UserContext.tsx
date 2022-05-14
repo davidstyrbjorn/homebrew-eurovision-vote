@@ -14,7 +14,9 @@ export const UserContext = createContext<UserContextType>({
     setUser: () => {},
     loginAsUser: async(name: string) => {},
     isMax: false,
-    setIsMax: () => {}
+    setIsMax: () => {},
+    isAch: false,
+    setIsAch: () => {}
 });
 
 type Props = {
@@ -26,6 +28,7 @@ export function UserProvider({children} : Props) {
         votes: new Map<string, number>()
     });
     const [isMax, setIsMax] = useState<boolean>(false);
+    const [isAch, setIsAch] = useState<boolean>(false);
     const [users, setUsers] = useState<User[]>([]);
 
     useEffect(() => {
@@ -49,7 +52,7 @@ export function UserProvider({children} : Props) {
     }
 
     return (
-        <UserContext.Provider value={{user, setUser, loginAsUser, isMax, setIsMax, users}}>
+        <UserContext.Provider value={{user, setUser, loginAsUser, isMax, setIsMax, users, isAch, setIsAch}}>
             {children}
         </UserContext.Provider>
         

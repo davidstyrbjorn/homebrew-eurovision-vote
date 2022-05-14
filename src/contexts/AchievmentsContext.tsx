@@ -41,16 +41,12 @@ export function AchievmentProvider({children}: Props) {
         }
     }, []);
 
-    useEffect(() => {
-        console.log("MAP", achievmentsMap);
-    }, [achievmentsMap])
-
     // Should the current achievment key change? Make sure the AchievmentsView can respond nicely
     const switchKey = (key: KEY) => {
         setCurrentKey(key);
         const ref = doc(db, 'admin', 'admin');
         updateDoc(ref, {
-            currentKey
+            currentKey: key as string
         });
     }
 

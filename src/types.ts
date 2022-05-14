@@ -21,6 +21,8 @@ export type UserContextType = {
     loginAsUser: (name: string) => Promise<void>,
     isMax: boolean,
     setIsMax: React.Dispatch<React.SetStateAction<boolean>>,
+    isAch: boolean,
+    setIsAch: React.Dispatch<React.SetStateAction<boolean>>,
     users: User[]
 }
 
@@ -114,11 +116,6 @@ export const ACHIEVMENTS: Achievment[] = [
         descriptor: 'Spelaren som gav mest poäng till yugoslavien gruppen'
     },
     {
-        key: 'worstTaste',
-        title: 'Sämst smak 🤮',
-        descriptor: 'personen med mest annorlunda score från mig (max)'
-    },
-    {
         key: 'top3',
         title: 'Våra vinnare! 🏅🏅🏅',
         descriptor: 'Låtarna med högt poäng overall'
@@ -127,7 +124,12 @@ export const ACHIEVMENTS: Achievment[] = [
         key: 'bottom3',
         title: 'Våra losers! 🦀🦀🦀',
         descriptor: 'Låtarna med minst poäng overall'
-    }
+    },
+    {
+        key: 'worstTaste',
+        title: 'Sämst smak 🤮',
+        descriptor: 'personen med mest annorlunda score från mig (max)'
+    },
 ]
 
 export type PlayerAndScore = {

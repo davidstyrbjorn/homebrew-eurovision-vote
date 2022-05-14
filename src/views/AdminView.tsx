@@ -92,7 +92,11 @@ const AdminView: React.FC = () => {
             <Box bgcolor={'white'} marginTop={16} padding={4} display='flex' justifyContent={'space-around'} flexDirection={'column'}>
                 <Button size='large' color='warning' variant='contained' onClick={() => calculateAllAchievments()}>BERÄKNA ACHIEVMENTS (KAN TA NÅGRA SEKUNDER)</Button>
                 {ACHIEVMENTS.map(ach => {
-                    return <Button color={ach.key == currentKey ? 'primary' : 'secondary'}>{ach.key}</Button>
+                    return <Button color={ach.key == currentKey ? 'primary' : 'secondary'}
+                        onClick={() => switchKey(ach.key)}
+                    >
+                        {ach.key}
+                    </Button>
                 })}
             </Box>
         )

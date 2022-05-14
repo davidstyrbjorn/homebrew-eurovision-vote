@@ -28,7 +28,7 @@ const calculateAllAchievments = async(): Promise<FirebaseResult> => {
     // For each achievment key, call the corresponding function, passing participants + users
     Promise.all([
         ACHIEVMENTS.forEach(async(ach) => {
-            const result = keyToFunctionAchievment.get(ach.key)!(participants, users);
+            const result = keyToFunctionAchievment.get(ach.key)!([...participants], [...users]);
             achievmentMap.set(ach.key, result); // Insert into our map
         })
     ]);

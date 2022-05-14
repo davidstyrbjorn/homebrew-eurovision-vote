@@ -24,11 +24,11 @@ const addedButtonStyle = {
 }
 
 const LoginView: React.FC<{}> = () => {
-    const {loginAsUser, setIsMax} = useContext(UserContext);
+    const {loginAsUser, setIsMax, setIsAch} = useContext(UserContext);
     const [name, setName] = useState<string>("");
     const [foundStoredName, setFoundStoredName] = useState<boolean>(false);
     const [secretPhrase, setSecretPhrase] = useState<string>("");
-    const SECRET = "102ep12dp3fj2ffjp4j"
+    const SECRET = "super-max"
 
     const onSubmit = () => {
         if(name == "") return;
@@ -47,6 +47,9 @@ const LoginView: React.FC<{}> = () => {
         setSecretPhrase(event.target.value);
         if(event.target.value == SECRET){
             setIsMax(true);
+        }
+        else if(event.target.value == "ach"){
+            setIsAch(true);
         }
     }
 

@@ -1,16 +1,9 @@
 import { Box, Typography } from "@mui/material";
-import { flexbox } from "@mui/system";
-import React, { useContext } from "react";
+import React, { createRef, useContext, useEffect, useRef, useState } from "react";
 import { AiFillTrophy } from "react-icons/ai";
 import { BiMedal } from "react-icons/bi";
-import QuestionSubmitPrompt from "../components/QuestionSubmitPrompt";
-import { ParticipantContext } from "../contexts/ParticipantContext";
-import { QuestionContext } from "../contexts/QuestionContext";
-import { UserContext } from "../contexts/UserContext";
-import CurrentlyPlaying from "./../components/CurrentlyPlaying";
-import EntryList from "./../components/EntryList";
-import AdminView from "./AdminView";
-import LoginView from "./LoginView";
+import { AchievmentsContext } from "../contexts/AchievmentsContext";
+import { Achievment, ACHIEVMENTS } from "../types";
 
 const containerStyle = {
     display: "flex",
@@ -28,19 +21,53 @@ const iconStyle = {
 }
 
 const AchievementView: React.FC<{}> = () => {
+    const {achievmentsMap, currentKey} = useContext(AchievmentsContext);
+    const [currentAchievment, setCurrentAchievment] = useState<Achievment>({
+        descriptor: "",
+        key: "bottom3",
+        title: ""
+    });
+    const [toFadeOut, setToFadeOut] = useState(false);
+    const [first, setFirst] = useState('');
+    const [second, setSecond] = useState('');
+    const [third, setThird] = useState('');
 
-    const toFadeOut = false;
+    useEffect(() => {
+        setToFadeOut(true);
+
+        // Reset class names to non trigger
+        
+        setTimeout(() => {
+            setFirst(""); setSecond(""); setThird("");
+            // Set some states
+            setCurrentAchievment(ACHIEVMENTS.find(ach => ach.key == currentKey)!);
+            setToFadeOut(false);
+            setTimeout(() => {
+                // Set class names to trigger class
+                setFirst("trigger-pedistal");
+                setSecond("trigger-pedistal");
+                setThird("trigger-pedistal");
+            }, 300);
+        }, 3000)
+    }, [currentKey]);
+
     return ( 
-        <Box className={toFadeOut ? "trigger-fade-out":""} sx={{display:"flex",margin:"6rem", justifyContent:"center"}} height="70vh">
+        <Box className={toFadeOut ? "trigger-fade-out" : "trigger-fade-in"} sx={{display:"flex",margin:"6rem", justifyContent:"center", overflow: 'hidden'}} height="70vh">
             <Box className="trigger-title-in" display={"flex"} flexDirection="column" width="60%" justifyContent={"center"}>
-                <Typography variant="h1" color="white" sx={{fontSize:"180px" ,fontWeight:"bold"}}>RYSK SPION</Typography>
-                <Typography sx={{ color:"white"}} variant="h3">Spelaren som gav mest poäng till "vi hatar varandra men röstar ändo på varandra" gruppen</Typography>
+                <Typography variant="h1" color="white" sx={{fontSize:"180px" ,fontWeight:"bold"}}>{currentAchievment.title}</Typography>
+                <Typography sx={{ color:"white"}} variant="h3">{currentAchievment.descriptor}</Typography>
             </Box>
             <Box sx={containerStyle}>
                 <Box sx={{padding:"2rem", width:"fit-content"}}>
-                    <Typography className="first trigger-pedistal"  variant="h1"><AiFillTrophy   style={iconStyle}/>Emil</Typography>
-                    <Typography className="second trigger-pedistal" variant="h1"><BiMedal        style={iconStyle}/>David</Typography>
-                    <Typography className="third trigger-pedistal"  variant="h1"><BiMedal        style={iconStyle}/>Ruben</Typography>
+                    <Typography className={`first ${first}`}  variant="h1"><AiFillTrophy style={iconStyle}/>
+                        {achievmentsMap.get(currentKey)![0].name}: {achievmentsMap.get(currentKey)![0].score}
+                    </Typography>
+                    <Typography className={`second ${second}`} variant="h1"><BiMedal style={iconStyle}/>
+                        {achievmentsMap.get(currentKey)![1].name}: {achievmentsMap.get(currentKey)![1].score}
+                    </Typography>
+                    <Typography className={`third ${third}`} variant="h1"><BiMedal style={iconStyle}/>
+                        {achievmentsMap.get(currentKey)![2].name}: {achievmentsMap.get(currentKey)![2].score}
+                    </Typography>
                 </Box>
             </Box>
 
