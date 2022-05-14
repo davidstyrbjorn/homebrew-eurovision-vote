@@ -31,16 +31,16 @@ const AchievementView: React.FC<{}> = () => {
 
     const toFadeOut = false;
     return ( 
-        <Box className={toFadeOut ? "fade-out":""} sx={{display:"flex",margin:"6rem", justifyContent:"center"}} height="70vh">
-            <Box className="title-in" display={"flex"} flexDirection="column" width="60%" justifyContent={"center"}>
+        <Box className={toFadeOut ? "trigger-fade-out":""} sx={{display:"flex",margin:"6rem", justifyContent:"center"}} height="70vh">
+            <Box className="trigger-title-in" display={"flex"} flexDirection="column" width="60%" justifyContent={"center"}>
                 <Typography variant="h1" color="white" sx={{fontSize:"180px" ,fontWeight:"bold"}}>RYSK SPION</Typography>
                 <Typography sx={{ color:"white"}} variant="h3">Spelaren som gav mest poäng till "vi hatar varandra men röstar ändo på varandra" gruppen</Typography>
             </Box>
             <Box sx={containerStyle}>
                 <Box sx={{padding:"2rem", width:"fit-content"}}>
-                    <Typography className="first"  variant="h1"><AiFillTrophy   style={iconStyle}/>Emil</Typography>
-                    <Typography className="second" variant="h1"><BiMedal        style={iconStyle}/>David</Typography>
-                    <Typography className="third"  variant="h1"><BiMedal        style={iconStyle}/>Ruben</Typography>
+                    <Typography className="first trigger-pedistal"  variant="h1"><AiFillTrophy   style={iconStyle}/>Emil</Typography>
+                    <Typography className="second trigger-pedistal" variant="h1"><BiMedal        style={iconStyle}/>David</Typography>
+                    <Typography className="third trigger-pedistal"  variant="h1"><BiMedal        style={iconStyle}/>Ruben</Typography>
                 </Box>
             </Box>
 

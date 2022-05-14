@@ -17,7 +17,6 @@ const HomeView: React.FC<{}> = () => {
     const { currentlyPlaying } = useContext(ParticipantContext);
     const { questionActive } = useContext(QuestionContext);
 
-    // if(true) return <AchievementView/>
     if(isMax) return <AdminView/>
     if(user.name == "") return <LoginView/>
     return ( 
