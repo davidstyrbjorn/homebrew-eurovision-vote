@@ -55,6 +55,74 @@ body, head {
   transition-delay: 1s;
 }
 
+
+@keyframes firstplace {
+  0% {
+    opacity: 0;
+    filter:blur(20px);
+    transform: scale(3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.first{
+  color:gold;
+  opacity: 0;
+  animation: firstplace 2s ease-out 20s 1 forwards;
+  vertical-align: middle;
+}
+.second{
+  opacity: 0;
+  animation: firstplace 2s ease-out 15s 1 forwards;
+  color:silver;
+  vertical-align: middle;
+}
+.third{
+  opacity: 0;
+  animation: firstplace 2s ease-out 10s 1 forwards;
+  color:rgb(206, 160, 75);
+  vertical-align: middle;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    filter:blur(20px);
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.title-in{
+  animation: fadeIn 2s ease-out 0s 1 forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    filter:blur(20px);
+    transform: translateX(100%);
+  }
+}
+
+.fade-out{
+  animation: fadeOut 2s ease-out 0s 1 forwards;
+}
+
+
+
+
 head::before, head::after,
 body::before, body::after {
   position: fixed;
