@@ -110,8 +110,8 @@ const CurrentlyPlaying: React.FC<Props> = ({participant, modal}) => {
                 padding:"0.5rem",
                 
             }}>
-            <Button onClick={() => fillUserVotes(user, participants)}>VOTES PUSH</Button>
-            <Button onClick={() => calculateAllAchievments()}>ACHIEVMENTS</Button>
+            {/* <Button onClick={() => fillUserVotes(user, participants)}>VOTES PUSH</Button>
+            <Button onClick={() => calculateAllAchievments()}>ACHIEVMENTS</Button> */}
             <Typography variant="subtitle1" sx={{
                 textAlign:"center",
             }}>What did you think about this entry?</Typography>
