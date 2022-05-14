@@ -5,13 +5,17 @@ import { UserContext } from "../contexts/UserContext";
 import { syncParticipantsWithFirestore } from "../firebase/participants";
 
 const containerStyle = {
+    width:"85%",
     borderRadius: "20px",
     backgroundColor: "#fafafa",
-    margin:"1rem 0.5rem",
     padding:" 1rem 1rem",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    maxWidth:"600px", 
+    margin:"auto", 
+    overflowX:"hidden",
+    marginTop:"1rem",
 }
 
 const addedButtonStyle = {
@@ -61,7 +65,7 @@ const LoginView: React.FC<{}> = () => {
 
     return ( 
         <Box sx={containerStyle}>
-            <Typography variant="h5" sx={{ fontWeight:'bold'}}>Welcome to Euro</Typography>
+            <Typography variant="h5" sx={{ fontWeight:'bold'}}>Welcome to MARREVISION</Typography>
             <Typography variant="subtitle1">Please enter a username to continue</Typography>
             <TextField  sx={addedButtonStyle} id="outlined-basic"label="Username" value={name} onChange={onNameChange} variant="outlined" required/>
             <Button     sx={addedButtonStyle} variant="contained" onClick={onSubmit}>CONTINUE</Button>
