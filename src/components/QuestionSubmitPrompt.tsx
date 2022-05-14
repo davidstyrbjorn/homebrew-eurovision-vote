@@ -95,6 +95,7 @@ const QuestionSubmitPrompt: React.FC = () => {
             onClose={handleClose}
             message="Answer sent!"
             color="green"
+            autoHideDuration={3000}
         />
         </>
     )

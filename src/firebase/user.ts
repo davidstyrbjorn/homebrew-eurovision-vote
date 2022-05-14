@@ -1,7 +1,7 @@
 import { addDoc, collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from "@firebase/firestore"
 import { stringToByteArray } from "@firebase/util";
 import { db } from "../firebase.config"
-import { QuestionSubmission, User } from "../types"
+import { Participant, QuestionSubmission, User } from "../types"
 
 // If the name exists return the firestore document, if not, create a new instance for that user
 const getUserIfExists = async(name: string): Promise<User> => {
@@ -56,14 +56,35 @@ const updateVotesInUser = async(user: User) => {
     }
 }
 
+const fillUserVotes = async (user: User, participants: Participant[]): Promise<User> => {
+    participants.forEach(p => {
+        const x = Math.floor(Math.random() * 10)
+        user.votes.set(p.country, x);
+    })
+
+    await updateVotesInUser(user);
+
+    return user;
+}
+
 const getAllUsers = async(): Promise<User[]> => {
     const querySnapshot = await getDocs(collection(db, 'users'));
     const result: User[] = [];
     querySnapshot.forEach((doc) => {
-        result.push(doc.data() as User);
+        // Convert to ES Map
+        const docData = doc.data();
+        const tokensMap = docData.votes;
+        const map = new Map<string, number>();
+        Object.keys(tokensMap).forEach(e => {
+            map.set(e, tokensMap[e]);
+        }); 
+        result.push({
+            name: docData.name,
+            votes: map
+        });
     });
     
     return result;
 }
 
-export { getUserIfExists, updateVotesInUser, getAllUsers }
+export { getUserIfExists, updateVotesInUser, getAllUsers, fillUserVotes }

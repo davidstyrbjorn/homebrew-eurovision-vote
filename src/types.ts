@@ -50,7 +50,9 @@ export type FirebaseResult = {
 }
 
 // ACHIEVMENT RELATED
-export type KEY = 'drunk' | 'racist' | 'snål';
+export type KEY = 'drunk' | 'snol' | 'racist' | 'poor' 
+    | 'kultur' | 'sverigeVan' | 'ryskSpion' | 'yugoslavien' 
+    | 'worstTaste' | 'top3' | 'bottom3';
 
 export type Achievment = {
     key: KEY,
@@ -67,8 +69,58 @@ export type AchievmentResult = {
 export const ACHIEVMENTS: Achievment[] = [
     {
         key: 'drunk',
-        title: 'Har druckit för mycket',
+        title: 'Har druckit för mycket 🍻',
         descriptor: 'Spelaren som gav mest poäng overall'
+    },
+    {
+        key: 'snol',
+        title: 'Snålaste jäveln 💰',
+        descriptor: 'Spelaren som gav minst poäng overall'
+    },
+    {
+        key: 'racist',
+        title: 'Din jävla jäkel 😡',
+        descriptor: 'Spelaren som gav minst poäng till bidrag som inte framträdes på engelska'
+    },
+    {
+        key: 'poor',
+        title: 'Fattigaste personen i rummet 😫',
+        descriptor: 'spelaren som gav mest poäng till GREKLAND KEKW gruppen'
+    },
+    {
+        key: 'kultur',
+        title: 'Kultur tanten 👵',
+        descriptor: 'spelaren som gav mest poäng till låtar som inte sjungs på engelska'
+    },
+    {
+        key: 'sverigeVan',
+        title: 'Sverige vän 🏸🏏',
+        descriptor: 'spelaren som gav mest poäng till slick svensk röv gruppen'
+    },
+    {
+        key: 'ryskSpion',
+        title: 'Rysk spion 🕵️‍♀️',
+        descriptor: 'Spelaren som gav mest poäng till vi hatar varandra men röstar ändo på varandra gruppen'
+    },
+    {
+        key: 'yugoslavien',
+        title: 'JAG ÄLSKAR YUGOSLAVIEN 💼',
+        descriptor: 'Spelaren som gav mest poäng till yugoslavien gruppen'
+    },
+    {
+        key: 'worstTaste',
+        title: 'Sämst smak 🤮',
+        descriptor: 'personen med mest annorlunda score från mig (max)'
+    },
+    {
+        key: 'top3',
+        title: 'Våra vinnare! 🏅🏅🏅',
+        descriptor: 'Låtarna med högt poäng overall'
+    },
+    {
+        key: 'bottom3',
+        title: 'Våra losers! 🦀🦀🦀',
+        descriptor: 'Låtarna med minst poäng overall'
     }
 ]
 
@@ -76,25 +128,3 @@ export type PlayerAndScore = {
     name: string,
     score: number
 }
-
-/*
-
-Sämst smak :puke: : personen med mest annorlunda score från mig (max),
-
-Mest polariserande : låten med störst fördelning av sin poäng (typ några 9 poäng och några 1 poäng)
-
-JAG ÄLSKAR YUGOSLAVIEN  : Spelaren som gav mest poäng till yugoslavien gruppen
-
-Fisken i Talin : Spelaren som gav mest poäng till Balkan gruppen
-
-Rysk spion : Spelaren som gav mest poäng till vi hatar varandra men röstar ändo på varandra gruppen
-
-Sverige vänn : spelaren som gav mest poäng till slick svensk röv gruppen
-
-Fattigaste personen i rummet : spelaren som gav mest poäng till GREKLAND KEKW gruppen
-
-Kultur tanten : spelaren som gav mest poäng till låtar som inte sjungs på engelska
-
-Rasisten : spelaren som gav minst poäng till låtar som inte sjungs på engelska
-
-*/

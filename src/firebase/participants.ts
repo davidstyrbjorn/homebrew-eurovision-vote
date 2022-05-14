@@ -32,7 +32,7 @@ const getParticipantsFromFirestore = async() => {
     const result: Participant[] = [];
     querySnapshot.forEach((doc) => {
         result.push(doc.data() as Participant);
-    })
+    });
 
     return result;
 }

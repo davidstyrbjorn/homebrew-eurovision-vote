@@ -2,6 +2,7 @@ import { Button, Slider, Chip, Grid, Input, Box, TextField, Typography, Snackbar
 import React, { useContext, useEffect, useState } from "react";
 import { ParticipantContext } from "../contexts/ParticipantContext";
 import { UserContext } from "../contexts/UserContext";
+import { syncParticipantsWithFirestore } from "../firebase/participants";
 
 const containerStyle = {
     borderRadius: "20px",

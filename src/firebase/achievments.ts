@@ -14,12 +14,15 @@ import { doc, setDoc, updateDoc } from "@firebase/firestore";
 import { db } from "../firebase.config";
 import { Achievment, ACHIEVMENTS, FirebaseResult, KEY, Participant, PlayerAndScore, User } from "../types";
 import { keyToFunctionAchievment } from "./achievment_calculations";
+import { getParticipantsFromFirestore } from "./participants";
+import { getAllUsers } from "./user";
 
 // "Statically" pre-calc all achievment results and store them in firebase for later usage
 const calculateAllAchievments = async(): Promise<FirebaseResult> => {
     // Load all participants and users
-    const participants: Participant[] = [];
-    const users: User[] = [];
+    const participants: Participant[] = await getParticipantsFromFirestore();
+    const users: User[] = await getAllUsers();
+
     const achievmentMap = new Map<KEY, PlayerAndScore[]>();
 
     // For each achievment key, call the corresponding function, passing participants + users
@@ -32,8 +35,13 @@ const calculateAllAchievments = async(): Promise<FirebaseResult> => {
 
     // Push the map to DB
     const ref = doc(db, "admin", "admin");
+    const objMap = {};
+    achievmentMap.forEach((value, key) => {
+        // @ts-ignore
+        objMap[key] = value;
+    })
     await updateDoc(ref, {
-        achievements: achievmentMap
+        achievements: objMap
     })
 
     // If we got here everyrhing went well!

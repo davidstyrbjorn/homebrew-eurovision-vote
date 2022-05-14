@@ -3,8 +3,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { MdStar } from "react-icons/md";
 import { Participant } from "../types";
-import { updateVotesInUser } from "../firebase/user";
+import { fillUserVotes, updateVotesInUser } from "../firebase/user";
 import { toStringWithZeroPadding } from "../utility";
+import { ParticipantContext } from "../contexts/ParticipantContext";
 
 const boxStyle ={
     display: "flex",
@@ -66,7 +67,8 @@ type Props = {
 }
 
 const CurrentlyPlaying: React.FC<Props> = ({participant, modal}) => {
-    const {user, setUser} = useContext(UserContext);
+    const {user, setUser} = useContext(UserContext);    
+    const {participants} = useContext(ParticipantContext);
 
     const getRating = () => {
         if(user.votes.get)
@@ -78,7 +80,6 @@ const CurrentlyPlaying: React.FC<Props> = ({participant, modal}) => {
         // Grab slider value
         const value = e.target.value as number;
         // Update state
-        // console.log(user.votes);
         const copy = new Map(user.votes);
         copy.set(participant.country, value);
         setUser({...user, votes: copy});
@@ -108,6 +109,7 @@ const CurrentlyPlaying: React.FC<Props> = ({participant, modal}) => {
                 padding:"0.5rem",
                 
             }}>
+            {/* <Button onClick={() => fillUserVotes(user, participants)}>VOTES PUSH</Button> */}
             <Typography variant="subtitle1" sx={{
                 textAlign:"center",
             }}>What did you think about this entry?</Typography>

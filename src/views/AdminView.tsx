@@ -3,6 +3,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Gr
 import React, { useContext, useEffect, useState } from 'react';
 import { ParticipantContext } from '../contexts/ParticipantContext';
 import { UserContext } from '../contexts/UserContext';
+import { calculateAllAchievments } from '../firebase/achievments';
 import { activateQuestion, deactivateQuestion, updateCurrentlyPlaying } from '../firebase/admin';
 import { Participant, User } from '../types';
 
@@ -84,6 +85,14 @@ const AdminView: React.FC = () => {
         )
     }
 
+    const getAchievmentsView = () => {
+        return (
+            <Box bgcolor={'white'} marginTop={16} padding={4} display='flex' justifyContent={'space-around'}>
+                <Button size='large' color='warning' variant='contained' onClick={() => calculateAllAchievments()}>BERÄKNA ACHIEVMENTS (KAN TA NÅGRA SEKUNDER)</Button>
+            </Box>
+        )
+    }
+
     return (
         <Box sx={containerStyle}>
             <Box sx={top}>
@@ -107,6 +116,7 @@ const AdminView: React.FC = () => {
                 </Box>
             </Box>
             {getQuestionView()}
+            {getAchievmentsView()}
         </Box>
     );
 }
