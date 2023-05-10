@@ -1,4 +1,4 @@
-import { Button, Slider, Chip, Grid, Input, Box, TextField, Typography, Modal } from "@mui/material";
+import { Button, Slider, Chip, Grid, Input, Box, TextField, Typography, Modal, Divider } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { MdStar } from "react-icons/md";
@@ -18,11 +18,10 @@ const boxStyle ={
 }
 
 const containerStyle = {
-    borderRadius: "20px",
-    backgroundColor: "#e8eaf6",
-    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
-    backdropFilter: "blur(200px)",
-    WebkitBackdropFilter: "blur(5px)",
+    borderRadius: "10px",
+    
+    //backdropFilter: "blur(200px)",
+    //WebkitBackdropFilter: "blur(5px)",
     margin:"0.5rem 0.5rem",
     display: "flex",
     flexDirection: "column",
@@ -32,13 +31,13 @@ const containerStyle = {
 const orderStyle = {
     height: "100p%",
     display: "flex",
-    background: "#2196f3",
+    background: "#0043FF",
     flexDirection: "column",
     justifyContent: "center",
     padding:"0rem",
     margin:"0 0.5rem 0 0",
     color:"white",
-    borderRadius: "20px",
+    borderRadius: "10px",
 }
 
 const style = {
@@ -75,12 +74,13 @@ const Entry: React.FC<EntryProps> = ({participant}) => {
         <Box sx={{...containerStyle , flexDirection:"row", justifyContent:"space-between"}} 
             onClick={() => onEntryPress()}
         >
+            
             <Box sx={{...flexStyle}}>
                 <Box sx={ orderStyle }>
                     <Typography sx={{ fontWeight:"bold", fontSize:"2rem", padding:"1rem"}} variant="h4">{ toStringWithZeroPadding(participant.order+1) }</Typography>
                 </Box>
                 <Box sx={boxStyle}>
-                    <Typography sx ={{color:"#ff6d00",fontWeight:"bold", margin:"0", lineHeight: "1",}}variant="subtitle1">{participant.country}</Typography>
+                    <Typography sx ={{color:"#FF0087",fontWeight:"bold", margin:"0", lineHeight: "1",}}variant="subtitle1">{participant.country}</Typography>
                     <Typography sx ={{ color:"#263238",fontWeight:"bold", lineHeight: "1",}} variant="h5">{participant.title}</Typography>
                     <Typography sx ={{ lineHeight: "1"}} variant="subtitle1">{participant.artist} </Typography>
                 </Box>
@@ -119,7 +119,10 @@ const EntryList: React.FC = () => {
     return(
         <Box sx={{background:"white", padding:"1px", minHeight: "60vh"}}>
             {previouslyPlayedParticipants.map((participant: Participant, i: number) => {
-                return <Entry key={i} participant={participant} />
+                return <>
+                    <Entry key={i} participant={participant} />
+                    <Divider sx={{width:"95%", margin:"auto", background:""}} />
+                </>
             }, [])}
             <Modal
                 open={selectedParticipant != null}
