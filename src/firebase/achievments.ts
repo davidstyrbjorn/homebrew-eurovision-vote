@@ -12,47 +12,56 @@ we could have the getAchievment function just load the array of winners for that
 
 import { doc, setDoc, updateDoc } from "@firebase/firestore";
 import { db } from "../firebase.config";
-import { Achievment, ACHIEVMENTS, FirebaseResult, KEY, Participant, PlayerAndScore, User } from "../types";
+import {
+	ACHIEVMENTS,
+	FirebaseResult,
+	KEY,
+	Participant,
+	PlayerAndScore,
+	User,
+} from "../types";
 import { keyToFunctionAchievment } from "./achievment_calculations";
 import { getParticipantsFromFirestore } from "./participants";
 import { getAllUsers } from "./user";
 
 // "Statically" pre-calc all achievment results and store them in firebase for later usage
-const calculateAllAchievments = async(): Promise<FirebaseResult> => {
-    // Load all participants and users
-    const participants: Participant[] = await getParticipantsFromFirestore();
-    const users: User[] = await getAllUsers();
+const calculateAllAchievments = async (): Promise<FirebaseResult> => {
+	// Load all participants and users
+	const participants: Participant[] = await getParticipantsFromFirestore();
+	const users: User[] = await getAllUsers();
 
-    const achievmentMap = new Map<KEY, PlayerAndScore[]>();
+	const achievmentMap = new Map<KEY, PlayerAndScore[]>();
 
-    // For each achievment key, call the corresponding function, passing participants + users
-    Promise.all([
-        ACHIEVMENTS.forEach(async(ach) => {
-            const result = keyToFunctionAchievment.get(ach.key)!([...participants], [...users]);
-            achievmentMap.set(ach.key, result); // Insert into our map
-        })
-    ]);
+	// For each achievment key, call the corresponding function, passing participants + users
+	Promise.all([
+		ACHIEVMENTS.forEach(async (ach) => {
+			const result = keyToFunctionAchievment.get(ach.key)!(
+				[...participants],
+				[...users]
+			);
+			achievmentMap.set(ach.key, result); // Insert into our map
+		}),
+	]);
 
-    // Push the map to DB
-    const ref = doc(db, "admin", "admin");
-    const objMap = {};
-    achievmentMap.forEach((value, key) => {
-        // @ts-ignore
-        objMap[key] = value;
-    })
-    await updateDoc(ref, {
-        achievements: objMap
-    })
+	// Push the map to DB
+	const ref = doc(db, "admin", "admin");
+	const objMap = {};
+	achievmentMap.forEach((value, key) => {
+		// @ts-ignore
+		objMap[key] = value;
+	});
+	await updateDoc(ref, {
+		achievements: objMap,
+	});
 
-    // If we got here everyrhing went well!
-    return {
-        code: 200
-    };
-}
+	// If we got here everyrhing went well!
+	return {
+		code: 200,
+	};
+};
 
-const getAchievmentWinners = async(key: KEY): Promise<string[]> => {
-    return [];
-}
+const getAchievmentWinners = async (key: KEY): Promise<string[]> => {
+	return [];
+};
 
 export { calculateAllAchievments, getAchievmentWinners };
-

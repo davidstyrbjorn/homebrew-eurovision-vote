@@ -1,6 +1,5 @@
 // All our functions for calculating achievments
 
-import { PermPhoneMsg } from "@mui/icons-material";
 import {
 	FirebaseResult,
 	KEY,
@@ -22,6 +21,10 @@ const sortForHighest = (list: PlayerAndScore[]): PlayerAndScore[] => {
 const sortForLowest = (list: PlayerAndScore[]): PlayerAndScore[] => {
 	// Sort ascending
 	return list.sort((a, b) => (a.score > b.score ? 1 : -1));
+};
+
+const roundToDecimal3Points = (num: number) => {
+	return Math.round(num * 1000) / 1000;
 };
 
 const mostDrunk = (
@@ -90,45 +93,19 @@ const racist = (
 		// Go through each participant, get total score given, then save
 		participants.forEach((p) => {
 			// Only take songs that are NOT in english into account
+			console.log(p.language.toLocaleLowerCase());
 			if (p.language.toLocaleLowerCase() != "engelska")
 				newTotal.score += users[i].votes.get(p.country)!;
 			totalGivenScore += users[i].votes.get(p.country)!;
 		});
 		// Normalize against their total given score
 		newTotal.score /= totalGivenScore;
+		newTotal.score = roundToDecimal3Points(newTotal.score);
 		playersAndTheirTotal.push(newTotal);
 	}
 
 	// Sort for bottom 3
 	playersAndTheirTotal = sortForLowest(playersAndTheirTotal);
-
-	return playersAndTheirTotal;
-};
-
-// Fattigaste personen i rummet : spelaren som gav mest poäng till GREKLAND KEKW gruppen
-const fattigast = (
-	participants: Participant[],
-	users: User[]
-): PlayerAndScore[] => {
-	let playersAndTheirTotal: PlayerAndScore[] = [];
-
-	for (let i = 0; i < users.length; i++) {
-		const newTotal: PlayerAndScore = {
-			name: users[i].name,
-			score: 0,
-		};
-		let totalGivenScore = 0;
-		// Go through each participant, get total score given, then save
-		participants.forEach((p) => {
-			if (p.block.toLocaleLowerCase() != "grekland kekw")
-				newTotal.score += users[i].votes.get(p.country)!;
-			totalGivenScore += users[i].votes.get(p.country)!;
-		});
-		newTotal.score /= totalGivenScore;
-		playersAndTheirTotal.push(newTotal);
-	}
-
-	playersAndTheirTotal = sortForHighest(playersAndTheirTotal);
 
 	return playersAndTheirTotal;
 };
@@ -154,6 +131,7 @@ const kulturTanten = (
 			totalGivenScore += users[i].votes.get(p.country)!;
 		});
 		newTotal.score /= totalGivenScore;
+		newTotal.score = roundToDecimal3Points(newTotal.score);
 		playersAndTheirTotal.push(newTotal);
 	}
 
@@ -174,12 +152,17 @@ const sverigeVan = (
 			name: users[i].name,
 			score: 0,
 		};
+		let totalGivenScore = 0;
 		// Go through each participant, get total score given, then save
 		participants.forEach((p) => {
 			// Only take songs that are in the group "slick svensk röv gruppen"
 			if (p.block.toLocaleLowerCase() == "slicka svensk röv")
 				newTotal.score += users[i].votes.get(p.country)!;
+			totalGivenScore += users[i].votes.get(p.country)!;
 		});
+
+		newTotal.score /= totalGivenScore;
+		newTotal.score = roundToDecimal3Points(newTotal.score);
 		playersAndTheirTotal.push(newTotal);
 	}
 
@@ -188,58 +171,59 @@ const sverigeVan = (
 	return playersAndTheirTotal;
 };
 
-// Rysk spion : Spelaren som gav mest poäng till vi hatar varandra men röstar ändo på varandra gruppen
-const ryskSpion = (
+const basicBitch = (
 	participants: Participant[],
 	users: User[]
 ): PlayerAndScore[] => {
 	let playersAndTheirTotal: PlayerAndScore[] = [];
 
-	for (let i = 0; i < users.length; i++) {
-		const newTotal: PlayerAndScore = {
-			name: users[i].name,
+	users.forEach((u) => {
+		let newTotal: PlayerAndScore = {
+			name: u.name,
 			score: 0,
 		};
-		// Go through each participant, get total score given, then save
-		participants.forEach((p) => {
-			// Only take songs that are in the group "vi hatar varandra men röstar ändo på varandra"
-			if (
-				p.block.toLocaleLowerCase() ==
-				"vi hatar varandra men röstar ändo på varandra"
-			)
-				newTotal.score += users[i].votes.get(p.country)!;
-		});
+		let totalGivenScore = 0;
+		for (let i = 0; i < participants.length; i++) {
+			if (participants[i].block == "Top 13") {
+				newTotal.score += u.votes.get(participants[i].country)!;
+			}
+			totalGivenScore += u.votes.get(participants[i].country)!;
+		}
+
+		newTotal.score /= totalGivenScore;
+		newTotal.score = roundToDecimal3Points(newTotal.score);
 		playersAndTheirTotal.push(newTotal);
-	}
+	});
 
 	playersAndTheirTotal = sortForHighest(playersAndTheirTotal);
-
 	return playersAndTheirTotal;
 };
 
-// JAG ÄLSKAR YUGOSLAVIEN  : Spelaren som gav mest poäng till yugoslavien gruppen
-const yugoslavien = (
+const hipster = (
 	participants: Participant[],
 	users: User[]
 ): PlayerAndScore[] => {
 	let playersAndTheirTotal: PlayerAndScore[] = [];
 
-	for (let i = 0; i < users.length; i++) {
-		const newTotal: PlayerAndScore = {
-			name: users[i].name,
+	users.forEach((u) => {
+		let newTotal: PlayerAndScore = {
+			name: u.name,
 			score: 0,
 		};
-		// Go through each participant, get total score given, then save
-		participants.forEach((p) => {
-			// Only take songs that are in the group "YUGOSLAVIEN "
-			if (p.block == "YUGOSLAVIEN ")
-				newTotal.score += users[i].votes.get(p.country)!;
-		});
+		let totalGivenScore = 0;
+		for (let i = 0; i < participants.length; i++) {
+			if (participants[i].block == "Bot 13") {
+				newTotal.score += u.votes.get(participants[i].country)!;
+			}
+			totalGivenScore += u.votes.get(participants[i].country)!;
+		}
+
+		newTotal.score /= totalGivenScore;
+		newTotal.score = roundToDecimal3Points(newTotal.score);
 		playersAndTheirTotal.push(newTotal);
-	}
+	});
 
 	playersAndTheirTotal = sortForHighest(playersAndTheirTotal);
-
 	return playersAndTheirTotal;
 };
 
@@ -341,12 +325,10 @@ export const keyToFunctionAchievment = new Map<KEY, ValueType>([
 	["drunk", mostDrunk],
 	["snol", snolJavel],
 	["racist", racist],
-	["poor", fattigast],
 	["kultur", kulturTanten],
-	["sverigeVan", sverigeVan],
-	["ryskSpion", ryskSpion],
-	["yugoslavien", yugoslavien],
 	["worstTaste", worstTaste],
 	["top3", top3Songs],
 	["bottom3", bottom3Songs],
+	["basicBitch", basicBitch],
+	["hipster", hipster],
 ]);

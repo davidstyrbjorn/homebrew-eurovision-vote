@@ -1,40 +1,39 @@
 import { db } from "../firebase.config";
 import participants from "../euro2022.json";
-import { collection, doc, getDocs, setDoc, writeBatch } from "@firebase/firestore";
+import { collection, doc, getDocs, writeBatch } from "@firebase/firestore";
 import { Participant } from "../types";
 
-const syncParticipantsWithFirestore = async() => {
-    try {
-        const batch = writeBatch(db);
-        // Grab ref, and create btach 
-        participants.forEach((entry, idx) => {
-            const newDocRef = doc(collection(db, 'participants'));
-            batch.set(newDocRef, {
-                artist: entry.Artist,
-                block: entry.Block,
-                country: entry.Land,
-                language: entry.Land,
-                region: entry.Region,
-                title: entry.Bidrag,
-                order: idx
-            });
-        })
+const syncParticipantsWithFirestore = async () => {
+	try {
+		const batch = writeBatch(db);
+		// Grab ref, and create btach
+		participants.forEach((entry, idx) => {
+			const newDocRef = doc(collection(db, "participants"));
+			batch.set(newDocRef, {
+				artist: entry.artist,
+				block: entry.block,
+				country: entry.country,
+				language: entry.language,
+				region: entry.region,
+				title: entry.title,
+				order: idx,
+			});
+		});
 
-        batch.commit();
+		batch.commit();
+	} catch (e) {
+		console.log("Batch failed: ", e);
+	}
+};
 
-    }catch(e){
-        console.log("Batch failed: ", e);
-    }
-}
+const getParticipantsFromFirestore = async () => {
+	const querySnapshot = await getDocs(collection(db, "participants"));
+	const result: Participant[] = [];
+	querySnapshot.forEach((doc) => {
+		result.push(doc.data() as Participant);
+	});
 
-const getParticipantsFromFirestore = async() => {
-    const querySnapshot = await getDocs(collection(db, 'participants'));
-    const result: Participant[] = [];
-    querySnapshot.forEach((doc) => {
-        result.push(doc.data() as Participant);
-    });
+	return result;
+};
 
-    return result;
-}
-
-export {syncParticipantsWithFirestore, getParticipantsFromFirestore}
+export { syncParticipantsWithFirestore, getParticipantsFromFirestore };

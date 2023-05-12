@@ -1,202 +1,210 @@
 [
-  {
-      "Land": "Tjeckien",
-      "Artist": "We Are Domi",
-      "Bidrag": "Lights Off",
-      "Språk": "Engelska",
-      "Region": "central europa",
-      "Block": "nazisterna"
-  },
-  {
-      "Land": "Rumänien",
-      "Artist": "Wrs",
-      "Bidrag": "Llámame",
-      "Språk": "Engelska, spanska",
-      "Region": "öst europa",
-      "Block": "vi hatar varandra men röstar ändo på varandra"
-  },
-  {
-      "Land": "Portugal",
-      "Artist": "MARO",
-      "Bidrag": "Saudade, saudade",
-      "Språk": "Engelska, portugisiska",
-      "Region": "syd europa",
-      "Block": "random"
-  },
-  {
-      "Land": "Finland",
-      "Artist": "The Rasmus",
-      "Bidrag": "Jezebel",
-      "Språk": "Engelska",
-      "Region": "scandinavien",
-      "Block": "slicka svensk röv"
-  },
-  {
-      "Land": "Schweiz",
-      "Artist": "Marius Bear",
-      "Bidrag": "Boys Do Cry",
-      "Språk": "Engelska",
-      "Region": "central europa",
-      "Block": "nazisterna"
-  },
-  {
-      "Land": "Frankrike",
-      "Artist": "Alvan & Ahez",
-      "Bidrag": "Fulenn",
-      "Språk": "Bretonska",
-      "Region": "central europa",
-      "Block": "FRANCE KEKW KEKW"
-  },
-  {
-      "Land": "Norge",
-      "Artist": "Subwoolfer",
-      "Bidrag": "Give That Wolf a Banana",
-      "Språk": "Engelska",
-      "Region": "scandinavien",
-      "Block": "slicka svensk röv"
-  },
-  {
-      "Land": "Armenien",
-      "Artist": "Rosa Linn",
-      "Bidrag": "Snap",
-      "Språk": "Engelska",
-      "Region": "öst europa",
-      "Block": "vi hatar varandra men röstar ändo på varandra"
-  },
-  {
-      "Land": "Italien",
-      "Artist": "Mahmood & Blanco",
-      "Bidrag": "Brividi",
-      "Språk": "Italienska",
-      "Region": "syd europa",
-      "Block": "italienska mafian"
-  },
-  {
-      "Land": "Spanien",
-      "Artist": "Chanel",
-      "Bidrag": "SloMo",
-      "Språk": "Spanska, engelska",
-      "Region": "syd europa",
-      "Block": "ingen gillar oss"
-  },
-  {
-      "Land": "Nederländerna",
-      "Artist": "S10",
-      "Bidrag": "De Diepte",
-      "Språk": "Nederländska",
-      "Region": "central europa",
-      "Block": "nazisterna"
-  },
-  {
-      "Land": "Ukraina",
-      "Artist": "Kalush Orchestra",
-      "Bidrag": "Stefania",
-      "Språk": "Ukrainska",
-      "Region": "öst europa",
-      "Block": "vi hatar varandra men röstar ändo på varandra"
-  },
-  {
-      "Land": "Tyskland",
-      "Artist": "Malik Harris",
-      "Bidrag": "Rockstars",
-      "Språk": "Engelska",
-      "Region": " central europa",
-      "Block": "nazisterna"
-  },
-  {
-      "Land": "Litauen",
-      "Artist": "Monika Liu",
-      "Bidrag": "Sentimentai",
-      "Språk": "Litauiska",
-      "Region": "baltikum",
-      "Block": "baltiCUM"
-  },
-  {
-      "Land": "Azerbajdzjan",
-      "Artist": "Nadir Rustamli",
-      "Bidrag": "Fade To Black",
-      "Språk": "Engelska",
-      "Region": "öst europa",
-      "Block": "i hatar varandra men röstar ändo på varandra"
-  },
-  {
-      "Land": "Belgien",
-      "Artist": "Jérémie Makiese",
-      "Bidrag": "Miss You",
-      "Språk": "Engelska",
-      "Region": "central europa",
-      "Block": "nazisterna"
-  },
-  {
-      "Land": "Grekland",
-      "Artist": "Amanda Tenfjord",
-      "Bidrag": "Die Together",
-      "Språk": "Engelska",
-      "Region": "syd europa",
-      "Block": "GREKLAND KEKW"
-  },
-  {
-      "Land": "Island",
-      "Artist": "Systur",
-      "Bidrag": "Með hækkandi sól",
-      "Språk": "Isländska",
-      "Region": "scandinavien",
-      "Block": "slicka svensk röv"
-  },
-  {
-      "Land": "Moldavien",
-      "Artist": "Zdob şi Zdub & Fraţii Advahov",
-      "Bidrag": "Trenuleţul",
-      "Språk": "Rumänska, engelska",
-      "Region": "öst europa",
-      "Block": "vi hatar varandra men röstar ändo på varandra"
-  },
-  {
-      "Land": "Sverige",
-      "Artist": "Cornelia Jakobs",
-      "Bidrag": "Hold Me Closer",
-      "Språk": "Engelska",
-      "Region": "scandinavien",
-      "Block": "slicka svensk röv"
-  },
-  {
-      "Land": "Australien",
-      "Artist": "Sheldon Riley",
-      "Bidrag": "Not the Same",
-      "Språk": "Engelska",
-      "Region": "inte europa",
-      "Block": "slicka svensk röv"
-  },
-  {
-      "Land": "Storbritannien",
-      "Artist": "Sam Ryder",
-      "Bidrag": "Space Man",
-      "Språk": "Engelska",
-      "Region": "nord europa",
-      "Block": "ingen gillar oss"
-  },
-  {
-      "Land": "Polen",
-      "Artist": "Ochman",
-      "Bidrag": "River",
-      "Språk": "Engelska",
-      "Region": "öst europa",
-      "Block": "vi hatar varandra men röstar ändo på varandra"
-  },
-  {
-      "Land": "Serbien",
-      "Artist": "Konstrakta",
-      "Bidrag": "In Corpore Sano",
-      "Språk": "Serbiska, latin",
-      "Region": "balkan",
-      "Block": "YUGOSLAVIEN "
-  },
-  {
-      "Land": "Estland",
-      "Artist": "Stefan",
-      "Bidrag": "Hope",
-      "Språk": "Engelska",
-      "Region": "baltikum",
-      "Block": "baltiCUM"
-  }
-]
+    {
+       "country":"Austria",
+       "artist":"Teya and Salena",
+       "title":"Who the Hell Is Edgar?",
+       "language":"English",
+       "region":"Central Europa",
+       "block":"Top 13"
+    },
+    {
+       "country":"Portugal",
+       "artist":"Mimicat",
+       "title":"Ai coração",
+       "language":"Portuguese",
+       "region":"Syd Europa",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Switzerland",
+       "artist":"Remo Forrer",
+       "title":"Watergun",
+       "language":"English",
+       "region":"Central Europa",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Poland",
+       "artist":"Blanka",
+       "title":"Solo",
+       "language":"English",
+       "region":"Europa",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Serbia",
+       "artist":"Luke Black",
+       "title":"Samo mi se spava",
+       "language":"Serbian",
+       "region":"Balkan",
+       "block":"Bot 13"
+    },
+    {
+       "country":"France",
+       "artist":"La Zarra",
+       "title":"Évidemment",
+       "language":"French",
+       "region":"Central Europa",
+       "block":"Top 13"
+    },
+    {
+       "country":"Cyprus",
+       "artist":"Andrew Lambrou",
+       "title":"Break a Broken Heart",
+       "language":"English",
+       "region":"Syd Europa",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Spain",
+       "artist":"Blanca Paloma",
+       "title":"Eaea",
+       "language":"Spanish",
+       "region":"Syd Europa",
+       "block":"Top 13"
+    },
+    {
+       "country":"Sweden",
+       "artist":"Loreen",
+       "title":"Tattoo",
+       "language":"English",
+       "region":"Nord Europa",
+       "block":"Top 13"
+    },
+    {
+       "country":"Albania",
+       "artist":"Albina and Familja Kelmendi",
+       "title":"Duje",
+       "language":"Albanian",
+       "region":"Balkan",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Italy",
+       "artist":"Marco Mengoni",
+       "title":"Due vite",
+       "language":"Italian",
+       "region":"Syd Europa",
+       "block":"Top 13"
+    },
+    {
+       "country":"Estonia",
+       "artist":"Alika",
+       "title":"Bridges",
+       "language":"English",
+       "region":"Nord Europa",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Finland",
+       "artist":"Käärijä",
+       "title":"Cha Cha Cha",
+       "language":"Finnish",
+       "region":"Nord Europa",
+       "block":"Top 13"
+    },
+    {
+       "country":"Czech Republic",
+       "artist":"Vesna",
+       "title":"My Sister's Crown",
+       "language":"Ukrainian",
+       "region":"Europa",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Australia",
+       "artist":"Voyager",
+       "title":"Promise",
+       "language":"English",
+       "region":"Inte Europa",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Belgium",
+       "artist":"Gustaph",
+       "title":"Because of You",
+       "language":"English",
+       "region":"Central Europa",
+       "block":"Top 13"
+    },
+    {
+       "country":"Armenia",
+       "artist":"Brunette",
+       "title":"Future Lover",
+       "language":"English",
+       "region":"Inte Europa",
+       "block":"Top 13"
+    },
+    {
+       "country":"Moldova",
+       "artist":"Pasha Parfeni",
+       "title":"Soarele și luna",
+       "language":"Romanian",
+       "region":"Europa",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Ukraine",
+       "artist":"Tvorchi",
+       "title":"Heart of Steel",
+       "language":"English",
+       "region":"Europa",
+       "block":"Top 13"
+    },
+    {
+       "country":"Norway",
+       "artist":"Alessandra",
+       "title":"Queen of Kings",
+       "language":"English",
+       "region":"Nord Europa",
+       "block":"Top 13"
+    },
+    {
+       "country":"Germany",
+       "artist":"Lord of the Lost",
+       "title":"Blood & Glitter",
+       "language":"English",
+       "region":"Central Europa",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Lithuania",
+       "artist":"Monika Linkyt",
+       "title":"Stay",
+       "language":"English",
+       "region":"Nord Europa",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Israel",
+       "artist":"Noa Kirel",
+       "title":"Unicorn",
+       "language":"English",
+       "region":"Inte Europa",
+       "block":"Top 13"
+    },
+    {
+       "country":"Slovenia",
+       "artist":"Joker Out",
+       "title":"Carpe Diem",
+       "language":"Slovene",
+       "region":"Balkan",
+       "block":"Bot 13"
+    },
+    {
+       "country":"Croatia",
+       "artist":"Let 3",
+       "title":"Mama ŠČ!",
+       "language":"Croatian",
+       "region":"Balkan",
+       "block":"Top 13"
+    },
+    {
+       "country":"United Kingdom",
+       "artist":"Mae Muller",
+       "title":"I Wrote a Song",
+       "language":"English",
+       "region":"Nord Europa",
+       "block":"Top 13"
+    }
+ ]
