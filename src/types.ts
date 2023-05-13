@@ -75,6 +75,7 @@ export type Achievment = {
 	key: KEY;
 	title: string;
 	descriptor: string;
+	isPercentageBased?: boolean;
 };
 
 export type AchievmentResult = {
@@ -86,52 +87,54 @@ export type AchievmentResult = {
 export const ACHIEVMENTS: Achievment[] = [
 	{
 		key: "drunk",
-		title: "Har druckit för mycket 🍻",
-		descriptor: "Spelaren som gav mest poäng overall",
+		title: "En för många bärtz 🍻",
+		descriptor: "De som gav mest poäng overall är...",
 	},
 	{
 		key: "snol",
-		title: "Snålaste jäveln 💰",
-		descriptor: "Spelaren som gav minst poäng overall",
+		title: "Tuffaste kritikern 🥇",
+		descriptor: "De som gav minst poäng overall är...",
 	},
 	{
 		key: "racist",
-		title: "Din jävla jäkel 😡",
+		title: "Big fan av Engelska 😡",
 		descriptor:
-			"Spelaren som gav minst poäng till bidrag som inte framträdes på engelska",
+			"De som gav minst andel av sina poäng till bidrag som inte sjungs på engelska",
+		isPercentageBased: true,
 	},
 	{
 		key: "kultur",
-		title: "Kultur tanten 👵",
+		title: "Kulturerad 🌏🧺",
 		descriptor:
-			"spelaren som gav mest poäng till låtar som inte sjungs på engelska",
+			"De som gav störst andel av sina poäng till låtar som inte sjungs på engelska",
+		isPercentageBased: true,
 	},
 	{
 		key: "basicBitch",
-		title: "Basic Bitch",
-		descriptor:
-			"Spelaren som gav mest poäng till låtarna i top halvan av bettingen",
+		title: "ICA Basic 😂",
+		descriptor: "Gav mest poäng till låtarna i top halvan av bettingen",
+		isPercentageBased: true,
 	},
 	{
 		key: "hipster",
-		title: "Hipster",
-		descriptor:
-			"Spelaren som gav mest poäng till låtarna i top halvan av bettingen",
-	},
-	{
-		key: "top3",
-		title: "Våra vinnare! 🏅🏅🏅",
-		descriptor: "Låtarna med högt poäng overall",
+		title: "Hipsterino 🪕",
+		descriptor: "Gav mest poäng till låtarna i top halvan av bettingen",
+		isPercentageBased: true,
 	},
 	{
 		key: "bottom3",
 		title: "Våra losers! 🦀🦀🦀",
-		descriptor: "Låtarna med minst poäng overall",
+		descriptor: "Bidragen med minst total poäng är...",
+	},
+	{
+		key: "top3",
+		title: "Våra vinnare! 🏅🏅🏅",
+		descriptor: "Bidragen vi gillade mest...",
 	},
 	{
 		key: "worstTaste",
-		title: "Sämst smak 🤮",
-		descriptor: "personen med mest annorlunda score från mig (max)",
+		title: "Smaklös 🤮",
+		descriptor: "Individen med mest annorlunda score från mig (Max)",
 	},
 ];
 

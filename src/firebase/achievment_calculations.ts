@@ -94,7 +94,7 @@ const racist = (
 		participants.forEach((p) => {
 			// Only take songs that are NOT in english into account
 			console.log(p.language.toLocaleLowerCase());
-			if (p.language.toLocaleLowerCase() != "engelska")
+			if (p.language.toLocaleLowerCase() != "english")
 				newTotal.score += users[i].votes.get(p.country)!;
 			totalGivenScore += users[i].votes.get(p.country)!;
 		});
@@ -126,7 +126,7 @@ const kulturTanten = (
 		// Go through each participant, get total score given, then save
 		participants.forEach((p) => {
 			// Only take songs that are NOT in english into account
-			if (p.language.toLocaleLowerCase() != "storbritannien")
+			if (p.language.toLocaleLowerCase() != "english")
 				newTotal.score += users[i].votes.get(p.country)!;
 			totalGivenScore += users[i].votes.get(p.country)!;
 		});
