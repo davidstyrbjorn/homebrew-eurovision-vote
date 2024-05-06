@@ -9,7 +9,7 @@ import React, {
 import { AiFillTrophy } from "react-icons/ai";
 import { BiMedal } from "react-icons/bi";
 import { AchievmentsContext } from "../contexts/AchievmentsContext";
-import { Achievment, ACHIEVMENTS, KEY, PlayerAndScore } from "../types";
+import { Achievment, ACHIEVMENTS } from "../types";
 
 const containerStyle = {
 	display: "flex",
