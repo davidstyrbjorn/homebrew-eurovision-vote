@@ -18,7 +18,6 @@ const top = {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
-    borderRadius: "20px",
 
 }
 

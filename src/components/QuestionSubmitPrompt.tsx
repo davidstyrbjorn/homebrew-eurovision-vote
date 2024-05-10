@@ -6,12 +6,10 @@ import { QuestionContext } from "../contexts/QuestionContext";
 
 const containerStyle: SxProps<Theme> = {
     color: "white",
-    borderRadius: "20px",
+   
     background: "rgba(255, 255, 255, 0.1)",
     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
     backdropFilter: "blur(100px)",
-    WebkitBackdropFilter:  "blur(5px)",
-    border: "1px solid rgba(255, 255, 255, 0.3)",
     margin: "1rem 0.5rem",
     padding:" 1rem 1rem 1rem",
     marginBottom: "1rem",

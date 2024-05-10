@@ -25,9 +25,8 @@ const HomeView: React.FC<{}> = () => {
             {currentlyPlaying && 
                 <Box sx={{maxWidth:"600px", margin:"auto", overflowX:"hidden"}}>
                     <QuestionSubmitPrompt/>
-                    <Typography className="questionRoom" variant="subtitle1" color="white" padding="1rem 1rem 0rem 1rem" marginTop={questionActive ? "0":"-340px"}>Currently Playing</Typography>
+                    <Typography className="questionRoom" variant="subtitle1" color="white" padding="0rem 1rem 0rem 1rem" marginTop={questionActive ? "0":"-340px"}></Typography>
                     <CurrentlyPlaying participant={currentlyPlaying!}/>  
-                    <Typography variant="subtitle1" color="white" padding="1rem 1rem 0rem 1rem">Previously Played</Typography>
                     <EntryList/>
                 </Box>
             }      

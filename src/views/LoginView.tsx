@@ -17,7 +17,6 @@ import { syncParticipantsWithFirestore } from "../firebase/participants";
 
 const containerStyle = {
 	width: "85%",
-	borderRadius: "20px",
 	backgroundColor: "#fafafa",
 	padding: " 1rem 1rem",
 	display: "flex",

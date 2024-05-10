@@ -11,6 +11,7 @@ import HomeView from './views/HomeView';
 
 const theme = createTheme({
 	typography: {
+	
 		"fontFamily": `"Roboto", "Helvetica", "Arial", sans-serif`,
 		"fontSize": 14,
 		"fontWeightLight": 300,

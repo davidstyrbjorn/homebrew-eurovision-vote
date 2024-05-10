@@ -1,4 +1,4 @@
-import { Button, Slider, Chip, Grid, Input, Box, TextField, Typography, Divider } from "@mui/material";
+import { Button, Slider, Chip, Grid, Input, Box, TextField, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { MdStar } from "react-icons/md";
@@ -7,12 +7,8 @@ import { fillUserVotes, updateVotesInUser } from "../firebase/user";
 import { toStringWithZeroPadding } from "../utility";
 import { ParticipantContext } from "../contexts/ParticipantContext";
 import { calculateAllAchievments } from "../firebase/achievments";
+import { Height, Padding } from "@mui/icons-material";
 
-const boxStyle ={
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center"
-}
 
 const flexStyle ={
     display: "flex",
@@ -20,35 +16,34 @@ const flexStyle ={
 
 const containerStyle = {
     color: "white",
-    borderRadius: "20px",
-    background: "rgba(255, 255, 255, 0.1)",
-    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
-    backdropFilter: "blur(100px)",
-    WebkitBackdropFilter:  "blur(5px)",
-    border: "1px solid rgba(255, 255, 255, 0.3)",
-    padding:" 1rem 1rem",
-    margin:"0.5rem 0.5rem",
+    backgroundSize: "cover",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-     
+    padding: "1rem",
 }
 
+const songOrderStyle = {
+    flex: "1",
+    display: "flex",
+    background: "#F3DC14",
+    textAlign: "center",
+    flexDirection: "column",
+    justifyContent: "center",
+}
 
-// const containerStyle = {
-//     color: "white",
-//     borderRadius: "20px",
-//     background: "rgba(255, 255, 255, 0.1)",
-//     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
-//     backdropFilter: "blur(100px)",
-//     "-webkit-backdrop-filter": "blur(5px)",
-//     border: "1px solid rgba(255, 255, 255, 0.3)",
-//     margin:"1rem 0.5rem",
-//     padding:" 1rem 1rem",
-//     display: "flex",
-//     flexDirection: "column",
-//     justifyContent: "center",
-// }
+const songDetailsStyle = {
+    flex: "4",
+    padding:"1rem 1rem",
+    color:"white",
+    background: "#6528BC",
+}
+
+const starsStyle = {
+    
+    background: "#1DC0DF",
+   
+}
 
 const orderStyle = {
     height: "fit-content",
@@ -57,8 +52,6 @@ const orderStyle = {
     justifyContent: "center",
     padding:"1rem",
     margin:"0.5rem 1rem 0 0",
-    background: "#0043FF",
-    borderRadius:"20px",
     color:"white",
 }
 
@@ -87,21 +80,20 @@ const CurrentlyPlaying: React.FC<Props> = ({participant, modal}) => {
     }
 
     return ( 
-        <Box sx={!modal ? {...containerStyle} : {...containerStyle, background:"#fafafa", color:"black"}}>
+        <Box sx={{...containerStyle}}>
             <Box sx={{...flexStyle}}>
-                <Box sx={ {...orderStyle}}>
+                <Box sx={{...songOrderStyle}}>
                     <Typography sx={{ fontWeight:"bold"}} variant="h4">{toStringWithZeroPadding(participant.order+1)}</Typography>
                 </Box>
-                <Box>
-                    <Typography sx ={{color: "#FF0087", fontWeight:"bold", lineHeight:"1.2"}}variant="h5">{participant.country}</Typography>
+                <Box sx={{...songDetailsStyle}}>
+                    <Typography sx ={{fontWeight:"bold", lineHeight:"1.2"}}variant="h5">{participant.country}</Typography>
                     <Typography sx={{ fontWeight:"bold", lineHeight:"1.2"}} variant="h4">{participant.title}</Typography>
-                    <Typography sx={!modal ? {lineHeight:"1.2", color: "#FFF803"}: {lineHeight:"1.2"}}variant="subtitle1">By {participant.artist}</Typography>
+                    <Typography variant="subtitle1">By {participant.artist}</Typography>
                 </Box>
             </Box>
-            <Divider sx={{margin:"20px 0", background:"yellow"}}/>
-            <Box sx={{padding:"0.5rem"}}>
+            <Box sx={{padding:"0.5rem", ...starsStyle}}>
             <Typography variant="subtitle1" sx={{textAlign:"center",}}>What did you think about this entry?</Typography>
-                <Box sx={flexStyle}>
+                <Box sx={{...flexStyle, }}>
                     <Typography variant="h4" color="#E6A600" display={"flex"} sx={{ fontWeight:"bold"}} width="120px"><MdStar/>
                         {
                         getRating()
@@ -111,6 +103,7 @@ const CurrentlyPlaying: React.FC<Props> = ({participant, modal}) => {
                         sx={{
                             margin:"0 1rem",
                             color:"#E6A600",
+                            borderRadius: "0",
                         }}
                         onChange={onSliderChange}
                         value={getRating()}
