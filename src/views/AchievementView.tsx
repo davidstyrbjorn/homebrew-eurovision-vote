@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, SxProps, Typography, Backdrop } from "@mui/material";
 import React, {
 	createRef,
 	useContext,
@@ -11,7 +11,7 @@ import { BiMedal } from "react-icons/bi";
 import { AchievmentsContext } from "../contexts/AchievmentsContext";
 import { Achievment, ACHIEVMENTS } from "../types";
 
-const containerStyle = {
+const containerStyle: SxProps = {
 	display: "flex",
 	flexDirection: "column",
 	padding: "2rem",
@@ -40,7 +40,6 @@ const AchievementView: React.FC<{}> = () => {
 
 	useEffect(() => {
 		setToFadeOut(true);
-
 		// Reset class names to non trigger
 
 		setTimeout(() => {
@@ -76,57 +75,63 @@ const AchievementView: React.FC<{}> = () => {
 	};
 
 	return (
-		<Box
-			className={toFadeOut ? "trigger-fade-out" : "trigger-fade-in"}
+		<Backdrop
+			open={true}
 			sx={{
-				display: "flex",
-				margin: "6rem",
-				justifyContent: "center",
-				overflow: "hidden",
+				color: "#fff",
+				zIndex: (theme) => theme.zIndex.drawer + 1,
+				backgroundColor: "rgba(0, 0, 0, 0.4)",
 			}}
-			height="70vh"
 		>
 			<Box
-				className="trigger-title-in"
-				display={"flex"}
-				flexDirection="column"
-				width="60%"
-				justifyContent={"center"}
+				className={toFadeOut ? "trigger-fade-out" : "trigger-fade-in"}
+				sx={{
+					display: "flex",
+					margin: "6rem",
+					// justifyContent: "center",
+					overflow: "hidden",
+				}}
+				height="70vh"
 			>
-				<Typography
-					variant="h1"
-					color="white"
-					sx={{ fontSize: "180px", fontWeight: "bold" }}
+				<Box
+					className="trigger-title-in"
+					display={"flex"}
+					flexDirection="column"
+					width="60%"
+					justifyContent={"center"}
 				>
-					{currentAchievment.title}
-				</Typography>
-				<Typography sx={{ color: "white" }} variant="h3">
-					{currentAchievment.descriptor}
-				</Typography>
-			</Box>
-			<Box sx={containerStyle}>
-				<Box sx={{ padding: "2rem", width: "fit-content" }}>
-					<Typography className={`first ${first}`} variant="h1">
-						<AiFillTrophy style={iconStyle} />
-						{
-							achievmentsMap.get(currentAchievment.key)![0].name
-						}: {getScoreFromPlacement(0)}
+					<Typography
+						variant="h1"
+						color="white"
+						sx={{ fontSize: "180px", fontWeight: "bold" }}
+					>
+						{currentAchievment.title}
 					</Typography>
-					<Typography className={`second ${second}`} variant="h1">
-						<BiMedal style={iconStyle} />
-						{
-							achievmentsMap.get(currentAchievment.key)![1].name
-						}: {getScoreFromPlacement(1)}
-					</Typography>
-					<Typography className={`third ${third}`} variant="h1">
-						<BiMedal style={iconStyle} />
-						{
-							achievmentsMap.get(currentAchievment.key)![2].name
-						}: {getScoreFromPlacement(2)}
+					<Typography sx={{ color: "white" }} variant="h3">
+						{currentAchievment.descriptor}
 					</Typography>
 				</Box>
+				<Box sx={containerStyle}>
+					<Box sx={{ padding: "4rem", width: "fit-content" }}>
+						<Typography className={`first ${first}`} variant="h1">
+							<AiFillTrophy style={iconStyle} />
+							{achievmentsMap.get(currentAchievment.key)![0].name}
+							: {getScoreFromPlacement(0)}
+						</Typography>
+						<Typography className={`second ${second}`} variant="h1">
+							<BiMedal style={iconStyle} />
+							{achievmentsMap.get(currentAchievment.key)![1].name}
+							: {getScoreFromPlacement(1)}
+						</Typography>
+						<Typography className={`third ${third}`} variant="h1">
+							<BiMedal style={iconStyle} />
+							{achievmentsMap.get(currentAchievment.key)![2].name}
+							: {getScoreFromPlacement(2)}
+						</Typography>
+					</Box>
+				</Box>
 			</Box>
-		</Box>
+		</Backdrop>
 	);
 };
 

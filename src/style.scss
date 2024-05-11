@@ -1,125 +1,123 @@
 html {
-  background: url(/eurovision.gif);
-  background-size: 400%;
-  
+	background: url(/eurovision.gif);
+	background-size: 400%;
 }
 
-body, head {
-  margin:0;
-  display: block;
-  font-size: 52px;
+body,
+head {
+	margin: 0;
+	display: block;
+	font-size: 52px;
 }
 
 @keyframes slideIn {
-  0% {
-    transform: translateX(calc(-100vh));
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	0% {
+		transform: translateX(calc(-100vh));
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 @keyframes slideOut {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(100vh));
-    opacity: 0;
-  }
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(calc(100vh));
+		opacity: 0;
+	}
 }
 .question {
-  opacity: 0;
-  animation: 1s ease-out 0s 1 slideIn forwards;
-  animation-delay: 1s;
+	opacity: 0;
+	animation: 1s ease-out 0s 1 slideIn forwards;
+	animation-delay: 1s;
 }
 .question-out {
-  animation: 1s ease-out 0s 1 slideOut forwards;
+	animation: 1s ease-out 0s 1 slideOut forwards;
 }
 
 .questionRoom {
-  transition: margin-top 0.5s ease 1s;
-  transition-delay: 1s;
+	transition: margin-top 0.5s ease 1s;
+	transition-delay: 1s;
 }
 
-
 @keyframes firstplace {
-  0% {
-    opacity: 0;
-    filter:blur(20px);
-    transform: scale(3);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+	0% {
+		opacity: 0;
+		filter: blur(20px);
+		transform: scale(3);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 
 ::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
-.trigger-pedistal{
-  animation: firstplace 2s ease-out 1 forwards;
+.trigger-pedistal {
+	animation: firstplace 2s ease-out 1 forwards;
 }
 
-.first{
-  color:gold;
-  opacity: 0;
-  animation-delay: 17.5s;
-  vertical-align: middle;
+.first {
+	color: gold;
+	opacity: 0;
+	animation-delay: 17.5s;
+	vertical-align: middle;
 }
-.second{
-  opacity: 0;
-  animation-delay: 12.5s;
-  color:silver;
-  vertical-align: middle;
+.second {
+	opacity: 0;
+	animation-delay: 12.5s;
+	color: silver;
+	vertical-align: middle;
 }
-.third{
-  opacity: 0;
-  animation-delay: 5s;
-  color:rgb(206, 160, 75);
-  vertical-align: middle;
+.third {
+	opacity: 0;
+	animation-delay: 5s;
+	color: rgb(206, 160, 75);
+	vertical-align: middle;
 }
-
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-    filter:blur(20px);
-    transform: translateX(-100%);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+	0% {
+		opacity: 0;
+		filter: blur(20px);
+		transform: translateX(-100%);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 
-.trigger-title-in{
-  animation: fadeIn 2s ease-out 0s 1 forwards;
+.trigger-title-in {
+	animation: fadeIn 2s ease-out 0s 1 forwards;
 }
 
 @keyframes fadeOut {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    filter:blur(20px);
-    transform: translateX(100%);
-  }
+	0% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		filter: blur(20px);
+		transform: translateX(100%);
+	}
 }
 
-.trigger-fade-out{
-  animation: fadeOut 2s ease-out 0s 1 forwards;
+.trigger-fade-out {
+	animation: fadeOut 2s ease-out 0s 1 forwards;
 }
 
 .trigger-fade-in {
-  animation: fadeIn 2s ease-out 0s 1 forwards;
+	animation: fadeIn 2s ease-out 0s 1 forwards;
 }
 
 // head::before, head::after,
@@ -134,7 +132,6 @@ body, head {
 //   mix-blend-mode: screen;
 //   animation: 44s -27s move infinite ease-in-out alternate;
 // }
-
 
 // body::before {
 //   @include dots(40);
@@ -160,12 +157,11 @@ body, head {
 //   animation-delay: -19s;
 // }
 
-
 @keyframes move {
-  from {
-    transform: rotate(0deg) scale(12) translateX(-20px);
-  }
-  to {
-    transform: rotate(360deg) scale(18) translateX(20px);
-  }
+	from {
+		transform: rotate(0deg) scale(12) translateX(-20px);
+	}
+	to {
+		transform: rotate(360deg) scale(18) translateX(20px);
+	}
 }

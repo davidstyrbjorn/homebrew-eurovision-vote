@@ -10,7 +10,7 @@ and then stores that away somewhere? probably in the admin collection and then
 we could have the getAchievment function just load the array of winners for that key!
 */
 
-import { doc, setDoc, updateDoc } from "@firebase/firestore";
+import { doc, updateDoc } from "@firebase/firestore";
 import { db } from "../firebase.config";
 import {
 	ACHIEVMENTS,

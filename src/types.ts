@@ -69,7 +69,10 @@ export type KEY =
 	| "basicBitch"
 	| "worstTaste"
 	| "top3"
-	| "bottom3";
+	| "bottom3"
+	| "girlboss"
+	| "mansgris"
+	| "progressiv";
 
 export type Achievment = {
 	key: KEY;
@@ -86,8 +89,27 @@ export type AchievmentResult = {
 
 export const ACHIEVMENTS: Achievment[] = [
 	{
+		key: "girlboss",
+		title: "Girlsboss 👯",
+		descriptor: "Mest pooäng till bidrag framförd av en/flera kvinnor",
+		isPercentageBased: true,
+	},
+	{
+		key: "mansgris",
+		title: "Mansgris 🐷🐖",
+		descriptor: "Mest pooäng till bidrag framförd av en/flera män",
+		isPercentageBased: true,
+	},
+	{
+		key: "progressiv",
+		title: "Progressiv 🌈🏳️‍🌈",
+		descriptor:
+			"Mest poäng till bidrag framförda av icke binära artister eller grupper med blandade kön",
+		isPercentageBased: true,
+	},
+	{
 		key: "drunk",
-		title: "En för många bärtz 🍻",
+		title: "En för många 🍻",
 		descriptor: "De som gav mest poäng overall är...",
 	},
 	{
@@ -97,9 +119,9 @@ export const ACHIEVMENTS: Achievment[] = [
 	},
 	{
 		key: "racist",
-		title: "Big fan av Engelska 😡",
+		title: "Gillar Engelska",
 		descriptor:
-			"De som gav minst andel av sina poäng till bidrag som inte sjungs på engelska",
+			"De som gav minst andel poäng till bidrag utförda på andra språk",
 		isPercentageBased: true,
 	},
 	{
@@ -117,24 +139,24 @@ export const ACHIEVMENTS: Achievment[] = [
 	},
 	{
 		key: "hipster",
-		title: "Hipsterino 🪕",
-		descriptor: "Gav mest poäng till låtarna i top halvan av bettingen",
+		title: "Hipster 🪕",
+		descriptor: "Gav mest poäng till låtarna i botten halvan av bettingen",
 		isPercentageBased: true,
 	},
 	{
 		key: "bottom3",
-		title: "Våra losers! 🦀🦀🦀",
+		title: "Förlorarna 🤢",
 		descriptor: "Bidragen med minst total poäng är...",
 	},
 	{
 		key: "top3",
 		title: "Våra vinnare! 🏅🏅🏅",
-		descriptor: "Bidragen vi gillade mest...",
+		descriptor: "Bidragen med högst total poäng är...",
 	},
 	{
 		key: "worstTaste",
 		title: "Smaklös 🤮",
-		descriptor: "Individen med mest annorlunda score från mig (Max)",
+		descriptor: "Individen med mest annorlunda score från Max",
 	},
 ];
 

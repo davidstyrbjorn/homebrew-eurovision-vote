@@ -1,17 +1,5 @@
-import {
-	Button,
-	Slider,
-	Chip,
-	Grid,
-	Input,
-	Box,
-	TextField,
-	Typography,
-	Snackbar,
-	Alert,
-} from "@mui/material";
+import { Box, Button, TextField, Tooltip, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { ParticipantContext } from "../contexts/ParticipantContext";
 import { UserContext } from "../contexts/UserContext";
 import { syncParticipantsWithFirestore } from "../firebase/participants";
 
@@ -44,7 +32,6 @@ const LoginView: React.FC<{}> = () => {
 		if (name == "") return;
 		// Update local storage
 		localStorage.setItem("name", name);
-		// This will do alot of stuff and eventually update user context state
 		loginAsUser(name);
 	};
 
@@ -62,13 +49,6 @@ const LoginView: React.FC<{}> = () => {
 		}
 	};
 
-	const handleClose = (
-		event: React.SyntheticEvent | Event,
-		reason?: string
-	) => {
-		setFoundStoredName(false);
-	};
-
 	useEffect(() => {
 		// Check if local storage has a name already!
 		const storedName = localStorage.getItem("name");
@@ -81,10 +61,12 @@ const LoginView: React.FC<{}> = () => {
 	return (
 		<Box sx={containerStyle}>
 			<Typography variant="h5" sx={{ fontWeight: "bold" }}>
-				Welcome to MARREVISION
+				MARREVISION 2024
 			</Typography>
 			<Typography variant="subtitle1">
-				Please enter a username to continue
+				{foundStoredName
+					? "Hittade sparat namn! Använda gärna samma TACK (:"
+					: "Skriv in ditt användarnamn (andra kommer se det senare)"}
 			</Typography>
 			<TextField
 				sx={addedButtonStyle}
@@ -100,7 +82,7 @@ const LoginView: React.FC<{}> = () => {
 				variant="contained"
 				onClick={onSubmit}
 			>
-				CONTINUE
+				TILL RÖSTNING!
 			</Button>
 			<TextField
 				sx={addedButtonStyle}
@@ -110,20 +92,6 @@ const LoginView: React.FC<{}> = () => {
 				onChange={onSecretChange}
 				variant="outlined"
 			/>
-
-			<Snackbar
-				open={foundStoredName}
-				onClose={handleClose}
-				autoHideDuration={6000}
-			>
-				<Alert
-					onClose={handleClose}
-					severity="success"
-					sx={{ width: "100%" }}
-				>
-					Found a stored name!
-				</Alert>
-			</Snackbar>
 		</Box>
 	);
 };

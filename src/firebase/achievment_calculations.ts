@@ -1,12 +1,6 @@
 // All our functions for calculating achievments
 
-import {
-	FirebaseResult,
-	KEY,
-	Participant,
-	PlayerAndScore,
-	User,
-} from "../types";
+import { KEY, Participant, PlayerAndScore, User } from "../types";
 
 // Helpers
 // this gives descending order i.e 0 is highst
@@ -93,11 +87,11 @@ const racist = (
 		// Go through each participant, get total score given, then save
 		participants.forEach((p) => {
 			// Only take songs that are NOT in english into account
-			console.log(p.language.toLocaleLowerCase());
 			if (p.language.toLocaleLowerCase() != "english")
 				newTotal.score += users[i].votes.get(p.country)!;
 			totalGivenScore += users[i].votes.get(p.country)!;
 		});
+
 		// Normalize against their total given score
 		newTotal.score /= totalGivenScore;
 		newTotal.score = roundToDecimal3Points(newTotal.score);
@@ -317,6 +311,90 @@ const bottom3Songs = (
 	return songAndTheirTotal;
 };
 
+const girlsboss = (
+	participants: Participant[],
+	users: User[]
+): PlayerAndScore[] => {
+	let playersAndTheirTotal: PlayerAndScore[] = [];
+
+	users.forEach((u) => {
+		let newTotal: PlayerAndScore = {
+			name: u.name,
+			score: 0,
+		};
+		let totalGivenScore = 0;
+		for (let i = 0; i < participants.length; i++) {
+			if (participants[i].region == "girl") {
+				newTotal.score += u.votes.get(participants[i].country)!;
+			}
+			totalGivenScore += u.votes.get(participants[i].country)!;
+		}
+
+		newTotal.score /= totalGivenScore;
+		newTotal.score = roundToDecimal3Points(newTotal.score);
+		playersAndTheirTotal.push(newTotal);
+	});
+
+	playersAndTheirTotal = sortForHighest(playersAndTheirTotal);
+	return playersAndTheirTotal;
+};
+
+const mansgris = (
+	participants: Participant[],
+	users: User[]
+): PlayerAndScore[] => {
+	let playersAndTheirTotal: PlayerAndScore[] = [];
+
+	users.forEach((u) => {
+		let newTotal: PlayerAndScore = {
+			name: u.name,
+			score: 0,
+		};
+		let totalGivenScore = 0;
+		for (let i = 0; i < participants.length; i++) {
+			if (participants[i].region == "man") {
+				newTotal.score += u.votes.get(participants[i].country)!;
+			}
+			totalGivenScore += u.votes.get(participants[i].country)!;
+		}
+
+		newTotal.score /= totalGivenScore;
+		newTotal.score = roundToDecimal3Points(newTotal.score);
+		playersAndTheirTotal.push(newTotal);
+	});
+
+	playersAndTheirTotal = sortForHighest(playersAndTheirTotal);
+	return playersAndTheirTotal;
+};
+
+const progressiv = (
+	participants: Participant[],
+	users: User[]
+): PlayerAndScore[] => {
+	let playersAndTheirTotal: PlayerAndScore[] = [];
+
+	users.forEach((u) => {
+		let newTotal: PlayerAndScore = {
+			name: u.name,
+			score: 0,
+		};
+		let totalGivenScore = 0;
+		for (let i = 0; i < participants.length; i++) {
+			if (participants[i].region == "unspecified") {
+				newTotal.score += u.votes.get(participants[i].country)!;
+			}
+			totalGivenScore += u.votes.get(participants[i].country)!;
+		}
+
+		newTotal.score /= totalGivenScore;
+		newTotal.score = roundToDecimal3Points(newTotal.score);
+		playersAndTheirTotal.push(newTotal);
+	});
+
+	playersAndTheirTotal = sortForHighest(playersAndTheirTotal);
+	return playersAndTheirTotal;
+};
+
 type ValueType = (
 	participants: Participant[],
 	users: User[]
@@ -331,4 +409,7 @@ export const keyToFunctionAchievment = new Map<KEY, ValueType>([
 	["bottom3", bottom3Songs],
 	["basicBitch", basicBitch],
 	["hipster", hipster],
+	["girlboss", girlsboss],
+	["mansgris", mansgris],
+	["progressiv", progressiv],
 ]);

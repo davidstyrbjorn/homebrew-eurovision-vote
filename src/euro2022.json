@@ -1,210 +1,202 @@
 [
-    {
-       "country":"Austria",
-       "artist":"Teya and Salena",
-       "title":"Who the Hell Is Edgar?",
-       "language":"English",
-       "region":"Central Europa",
-       "block":"Top 13"
-    },
-    {
-       "country":"Portugal",
-       "artist":"Mimicat",
-       "title":"Ai coração",
-       "language":"Portuguese",
-       "region":"Syd Europa",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Switzerland",
-       "artist":"Remo Forrer",
-       "title":"Watergun",
-       "language":"English",
-       "region":"Central Europa",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Poland",
-       "artist":"Blanka",
-       "title":"Solo",
-       "language":"English",
-       "region":"Europa",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Serbia",
-       "artist":"Luke Black",
-       "title":"Samo mi se spava",
-       "language":"Serbian",
-       "region":"Balkan",
-       "block":"Bot 13"
-    },
-    {
-       "country":"France",
-       "artist":"La Zarra",
-       "title":"Évidemment",
-       "language":"French",
-       "region":"Central Europa",
-       "block":"Top 13"
-    },
-    {
-       "country":"Cyprus",
-       "artist":"Andrew Lambrou",
-       "title":"Break a Broken Heart",
-       "language":"English",
-       "region":"Syd Europa",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Spain",
-       "artist":"Blanca Paloma",
-       "title":"Eaea",
-       "language":"Spanish",
-       "region":"Syd Europa",
-       "block":"Top 13"
-    },
-    {
-       "country":"Sweden",
-       "artist":"Loreen",
-       "title":"Tattoo",
-       "language":"English",
-       "region":"Nord Europa",
-       "block":"Top 13"
-    },
-    {
-       "country":"Albania",
-       "artist":"Albina and Familja Kelmendi",
-       "title":"Duje",
-       "language":"Albanian",
-       "region":"Balkan",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Italy",
-       "artist":"Marco Mengoni",
-       "title":"Due vite",
-       "language":"Italian",
-       "region":"Syd Europa",
-       "block":"Top 13"
-    },
-    {
-       "country":"Estonia",
-       "artist":"Alika",
-       "title":"Bridges",
-       "language":"English",
-       "region":"Nord Europa",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Finland",
-       "artist":"Käärijä",
-       "title":"Cha Cha Cha",
-       "language":"Finnish",
-       "region":"Nord Europa",
-       "block":"Top 13"
-    },
-    {
-       "country":"Czech Republic",
-       "artist":"Vesna",
-       "title":"My Sister's Crown",
-       "language":"Ukrainian",
-       "region":"Europa",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Australia",
-       "artist":"Voyager",
-       "title":"Promise",
-       "language":"English",
-       "region":"Inte Europa",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Belgium",
-       "artist":"Gustaph",
-       "title":"Because of You",
-       "language":"English",
-       "region":"Central Europa",
-       "block":"Top 13"
-    },
-    {
-       "country":"Armenia",
-       "artist":"Brunette",
-       "title":"Future Lover",
-       "language":"English",
-       "region":"Inte Europa",
-       "block":"Top 13"
-    },
-    {
-       "country":"Moldova",
-       "artist":"Pasha Parfeni",
-       "title":"Soarele și luna",
-       "language":"Romanian",
-       "region":"Europa",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Ukraine",
-       "artist":"Tvorchi",
-       "title":"Heart of Steel",
-       "language":"English",
-       "region":"Europa",
-       "block":"Top 13"
-    },
-    {
-       "country":"Norway",
-       "artist":"Alessandra",
-       "title":"Queen of Kings",
-       "language":"English",
-       "region":"Nord Europa",
-       "block":"Top 13"
-    },
-    {
-       "country":"Germany",
-       "artist":"Lord of the Lost",
-       "title":"Blood & Glitter",
-       "language":"English",
-       "region":"Central Europa",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Lithuania",
-       "artist":"Monika Linkyt",
-       "title":"Stay",
-       "language":"English",
-       "region":"Nord Europa",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Israel",
-       "artist":"Noa Kirel",
-       "title":"Unicorn",
-       "language":"English",
-       "region":"Inte Europa",
-       "block":"Top 13"
-    },
-    {
-       "country":"Slovenia",
-       "artist":"Joker Out",
-       "title":"Carpe Diem",
-       "language":"Slovene",
-       "region":"Balkan",
-       "block":"Bot 13"
-    },
-    {
-       "country":"Croatia",
-       "artist":"Let 3",
-       "title":"Mama ŠČ!",
-       "language":"Croatian",
-       "region":"Balkan",
-       "block":"Top 13"
-    },
-    {
-       "country":"United Kingdom",
-       "artist":"Mae Muller",
-       "title":"I Wrote a Song",
-       "language":"English",
-       "region":"Nord Europa",
-       "block":"Top 13"
-    }
- ]
+   {
+      "country":"Sweden",
+      "artist":"Marcus & Martinus",
+      "title":"Unforgettable",
+      "language":"English",
+      "region":"man",
+      "block":"Top 13"
+   },
+   {
+      "country":"Ukraine",
+      "artist":"Alyona Alyona and Jerry Heil",
+      "title":"Teresa & Maria",
+      "language":"Ukrainian",
+      "region":"girl",
+      "block":"Top 13"
+   },
+   {
+      "country":"Germany",
+      "artist":"Isaak",
+      "title":"Always on the Run",
+      "language":"English",
+      "region":"man",
+      "block":"Bot 13"
+   },
+   {
+      "country":"Luxembourg",
+      "artist":"Tali",
+      "title":"Fighter",
+      "language":"French",
+      "region":"girl",
+      "block":"Bot 13"
+   },
+   {
+      "country":"Israel",
+      "artist":"Eden Golan",
+      "title":"Hurricane",
+      "language":"English",
+      "region":"girl",
+      "block":"Top 13"
+   },
+   {
+      "country":"Lithuania",
+      "artist":"Silvester Belt",
+      "title":"Luktelk",
+      "language":"Lithuanian",
+      "region":"man",
+      "block":"Top 13"
+   },
+   {
+      "country":"Spain",
+      "artist":"Nebulossa",
+      "title":"Zorra",
+      "language":"Spanish",
+      "region":"unspecified",
+      "block":"Bot 13"
+   },
+   {
+      "country":"Estonia",
+      "artist":"5miinust and Puuluup",
+      "title":"(Nendest) narkootikumidest ei tea me (küll) midagi",
+      "language":"Estonian",
+      "region":"man",
+      "block":"Bot 13"
+   },
+   {
+      "country":"Ireland",
+      "artist":"Bambie Thug",
+      "title":"Doomsdag Blue",
+      "language":"English",
+      "region":"unspecified",
+      "block":"Top 13"
+   },
+   {
+      "country":"Latvia",
+      "artist":"Dons",
+      "title":"Hollow",
+      "language":"English",
+      "region":"man",
+      "block":"Bot 13"
+   },
+   {
+      "country":"Greece",
+      "artist":"Marina Satti",
+      "title":"Zari",
+      "language":"Greek",
+      "region":"girl",
+      "block":"Top 13"
+   },
+   {
+      "country":"United Kingdom",
+      "artist":"Olly Alexander",
+      "title":"Dizzy",
+      "language":"English",
+      "region":"man",
+      "block":"Top 13"
+   },
+   {
+      "country":"Norway",
+      "artist":"Gåte",
+      "title":"Ulveham",
+      "language":"Norwegian",
+      "region":"unspecified",
+      "block":"Bot 13"
+   },
+   {
+      "country":"Italy",
+      "artist":"Angelina Mango",
+      "title":"La noia",
+      "language":"Italian",
+      "region":"girl",
+      "block":"Top 13"
+   },
+   {
+      "country":"Serbia",
+      "artist":"Teya Dora",
+      "title":"Ramonda",
+      "language":"Serbian",
+      "region":"girl",
+      "block":"Bot 13"
+   },
+   {
+      "country":"Finland",
+      "artist":"Windows95man",
+      "title":"No Rules!",
+      "language":"English",
+      "region":"man",
+      "block":"Top 13"
+   },
+   {
+      "country":"Portugal",
+      "artist":"Iolanda",
+      "title":"Grito",
+      "language":"Portuguese",
+      "region":"girl",
+      "block":"Bot 13"
+   },
+   {
+      "country":"Armenia",
+      "artist":"Ladaniva",
+      "title":"Jako",
+      "language":"Armenian",
+      "region":"unspecified",
+      "block":"Bot 13"
+   },
+   {
+      "country":"Cyprus",
+      "artist":"Silia Kapsis",
+      "title":"Liar",
+      "language":"English",
+      "region":"girl",
+      "block":"Bot 13"
+   },
+   {
+      "country":"Switzerland",
+      "artist":"Nemo",
+      "title":"The Code",
+      "language":"English",
+      "region":"unspecified",
+      "block":"Top 13"
+   },
+   {
+      "country":"Slovenia",
+      "artist":"Raiven",
+      "title":"Veronica",
+      "language":"Slovene",
+      "region":"girl",
+      "block":"Bot 13"
+   },
+   {
+      "country":"Croatia",
+      "artist":"Baby Lasagna",
+      "title":"Rim Tim Tagi Dim",
+      "language":"English",
+      "region":"man",
+      "block":"Top 13"
+   },
+   {
+      "country":"Georgia",
+      "artist":"Nutsa Buzaladze",
+      "title":"Firefighter",
+      "language":"English",
+      "region":"girl",
+      "block":"Bot 13"
+   },
+   {
+      "country":"France",
+      "artist":"Silmane",
+      "title":"Mon amour",
+      "language":"French",
+      "region":"man",
+      "block":"Top 13"
+   },
+   {
+      "country":"Austria",
+      "artist":"Kaleen",
+      "title":"We Will Rave",
+      "language":"English",
+      "region":"girl",
+      "block":"Bot 13"
+   }
+]
