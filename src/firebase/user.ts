@@ -9,7 +9,6 @@ import {
 	updateDoc,
 	where,
 } from "@firebase/firestore";
-import { stringToByteArray } from "@firebase/util";
 import { db } from "../firebase.config";
 import { Participant, QuestionSubmission, User } from "../types";
 

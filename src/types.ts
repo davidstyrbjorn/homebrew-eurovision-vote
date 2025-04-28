@@ -15,6 +15,13 @@ export type Participant = {
 	order: number;
 };
 
+export type Group = {
+	name: string;
+	answer: string;
+	timeRemaining: number;
+	score: number;
+};
+
 export type UserContextType = {
 	user: User;
 	setUser: React.Dispatch<React.SetStateAction<User>>;
@@ -42,6 +49,7 @@ export type QuestionSubmission = {
 };
 
 export type QuestionContextType = {
+	prompt: string;
 	questionActive: boolean;
 	questionStartTime: number;
 	allowedSecondsToAnswer: number;

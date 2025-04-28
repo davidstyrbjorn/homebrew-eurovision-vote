@@ -42,6 +42,7 @@ const QuestionSubmitPrompt: React.FC = () => {
 		questionActive,
 		questionStartTime,
 		allowedSecondsToAnswer,
+		prompt,
 	} = useContext(QuestionContext);
 	const [answer, setAnswer] = useState("");
 	const [group, setGroup] = useState("");
@@ -94,7 +95,7 @@ const QuestionSubmitPrompt: React.FC = () => {
 				<Box sx={{ display: "flex", justifyContent: "space-between" }}>
 					<Typography variant="h4" sx={{ fontWeight: "bold" }}>
 						<MdTimer style={style} />
-						SVARA!
+						{prompt}
 					</Typography>
 					<Typography variant="h4">{timeRemaining}s</Typography>
 				</Box>
