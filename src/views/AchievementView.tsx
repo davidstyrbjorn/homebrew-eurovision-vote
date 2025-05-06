@@ -33,9 +33,11 @@ const AchievementView: React.FC<{}> = () => {
 	const [third, setThird] = useState("");
 
 	useEffect(() => {
-		if (currentAchievment.showAll) {
+		setCurrentAchievment(ACHIEVMENTS.find((ach) => ach.key == currentKey)!);
+		let newAchievment = ACHIEVMENTS.find((ach) => ach.key == currentKey)!;
+		if (newAchievment.showAll) {
 			console.log("Showing achievment with 'showAll' = true!");
-			console.log(achievmentsMap.get(currentAchievment.key));
+			console.log(achievmentsMap.get(newAchievment.key));
 			setToFadeOut(true);
 			setTimeout(() => {
 				setToFadeOut(false);
@@ -49,9 +51,6 @@ const AchievementView: React.FC<{}> = () => {
 				setThird("");
 				// Set some states
 				console.log("CHANGING CURRENT ACHIEVMENT");
-				setCurrentAchievment(
-					ACHIEVMENTS.find((ach) => ach.key == currentKey)!
-				);
 				setToFadeOut(false);
 				setTimeout(() => {
 					// Set class names to trigger class
