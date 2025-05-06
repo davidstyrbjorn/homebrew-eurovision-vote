@@ -289,7 +289,8 @@ const AdminView: React.FC = () => {
 					variant="contained"
 					onClick={() => exportToCSV()}
 				>
-					SVERIGE, VI HAR ETT RESULTAT
+					SVERIGE, VI HAR ETT RESULTAT (EXPORTERA OCH LADDA NER
+					RÖSTNINGS RESULTAT)
 				</Button>
 			</Box>
 		);

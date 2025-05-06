@@ -85,7 +85,7 @@ const AchievementView: React.FC<{}> = () => {
 			}}
 		>
 			<Box
-				// className={toFadeOut ? "trigger-fade-out" : "trigger-fade-in"}
+				className={toFadeOut ? "trigger-fade-out" : "trigger-fade-in"}
 				sx={{
 					display: "flex",
 					margin: "6rem",
