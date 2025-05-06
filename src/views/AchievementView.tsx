@@ -1,11 +1,5 @@
-import { Box, SxProps, Typography, Backdrop } from "@mui/material";
-import React, {
-	createRef,
-	useContext,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import { Backdrop, Box, Fade, SxProps, Typography } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
 import { AiFillTrophy } from "react-icons/ai";
 import { BiMedal } from "react-icons/bi";
 import { AchievmentsContext } from "../contexts/AchievmentsContext";
@@ -16,7 +10,6 @@ const containerStyle: SxProps = {
 	flexDirection: "column",
 	padding: "2rem",
 	justifyContent: "center",
-
 	color: "white",
 };
 
@@ -32,6 +25,7 @@ const AchievementView: React.FC<{}> = () => {
 		descriptor: "",
 		key: "bottom3",
 		title: "",
+		showAll: true,
 	});
 	const [toFadeOut, setToFadeOut] = useState(false);
 	const [first, setFirst] = useState("");
@@ -39,26 +33,34 @@ const AchievementView: React.FC<{}> = () => {
 	const [third, setThird] = useState("");
 
 	useEffect(() => {
-		setToFadeOut(true);
-		// Reset class names to non trigger
-
-		setTimeout(() => {
-			setFirst("");
-			setSecond("");
-			setThird("");
-			// Set some states
-			console.log("CHANGING CURRENT ACHIEVMENT");
-			setCurrentAchievment(
-				ACHIEVMENTS.find((ach) => ach.key == currentKey)!
-			);
-			setToFadeOut(false);
+		if (currentAchievment.showAll) {
+			console.log("Showing achievment with 'showAll' = true!");
+			console.log(achievmentsMap.get(currentAchievment.key));
+			setToFadeOut(true);
 			setTimeout(() => {
-				// Set class names to trigger class
-				setFirst("trigger-pedistal");
-				setSecond("trigger-pedistal");
-				setThird("trigger-pedistal");
-			}, 300);
-		}, 3000);
+				setToFadeOut(false);
+			}, 3000);
+		} else {
+			setToFadeOut(true);
+			// Reset class names to non trigger
+			setTimeout(() => {
+				setFirst("");
+				setSecond("");
+				setThird("");
+				// Set some states
+				console.log("CHANGING CURRENT ACHIEVMENT");
+				setCurrentAchievment(
+					ACHIEVMENTS.find((ach) => ach.key == currentKey)!
+				);
+				setToFadeOut(false);
+				setTimeout(() => {
+					// Set class names to trigger class
+					setFirst("trigger-pedistal");
+					setSecond("trigger-pedistal");
+					setThird("trigger-pedistal");
+				}, 300);
+			}, 3000);
+		}
 	}, [currentKey]);
 
 	const getScoreFromPlacement = (index: number): string => {
@@ -84,7 +86,7 @@ const AchievementView: React.FC<{}> = () => {
 			}}
 		>
 			<Box
-				className={toFadeOut ? "trigger-fade-out" : "trigger-fade-in"}
+				// className={toFadeOut ? "trigger-fade-out" : "trigger-fade-in"}
 				sx={{
 					display: "flex",
 					margin: "6rem",
@@ -113,21 +115,78 @@ const AchievementView: React.FC<{}> = () => {
 				</Box>
 				<Box sx={containerStyle}>
 					<Box sx={{ padding: "4rem", width: "fit-content" }}>
-						<Typography className={`first ${first}`} variant="h1">
-							<AiFillTrophy style={iconStyle} />
-							{achievmentsMap.get(currentAchievment.key)![0].name}
-							: {getScoreFromPlacement(0)}
-						</Typography>
-						<Typography className={`second ${second}`} variant="h1">
-							<BiMedal style={iconStyle} />
-							{achievmentsMap.get(currentAchievment.key)![1].name}
-							: {getScoreFromPlacement(1)}
-						</Typography>
-						<Typography className={`third ${third}`} variant="h1">
-							<BiMedal style={iconStyle} />
-							{achievmentsMap.get(currentAchievment.key)![2].name}
-							: {getScoreFromPlacement(2)}
-						</Typography>
+						{currentAchievment.showAll ? (
+							<>
+								{achievmentsMap
+									.get(currentAchievment.key)
+									?.map((toDisplay, i) => {
+										let totalCount = achievmentsMap.get(
+											currentAchievment.key
+										)?.length;
+										return (
+											<Fade
+												in={!toFadeOut}
+												style={{
+													transitionDelay:
+														(
+															totalCount! - i
+														).toString() + "s",
+												}}
+											>
+												<Typography
+													variant="h2"
+													key={
+														"achEntry" +
+														i.toString()
+													}
+												>
+													{i}. {toDisplay.name} :{" "}
+													{toDisplay.score}
+												</Typography>
+											</Fade>
+										);
+									})}
+							</>
+						) : (
+							<>
+								<Typography
+									className={`first ${first}`}
+									variant="h1"
+								>
+									<AiFillTrophy style={iconStyle} />
+									{
+										achievmentsMap.get(
+											currentAchievment.key
+										)![0].name
+									}
+									: {getScoreFromPlacement(0)}
+								</Typography>
+								<Typography
+									className={`second ${second}`}
+									variant="h1"
+								>
+									<BiMedal style={iconStyle} />
+									{
+										achievmentsMap.get(
+											currentAchievment.key
+										)![1].name
+									}
+									: {getScoreFromPlacement(1)}
+								</Typography>
+								<Typography
+									className={`third ${third}`}
+									variant="h1"
+								>
+									<BiMedal style={iconStyle} />
+									{
+										achievmentsMap.get(
+											currentAchievment.key
+										)![2].name
+									}
+									: {getScoreFromPlacement(2)}
+								</Typography>
+							</>
+						)}
 					</Box>
 				</Box>
 			</Box>

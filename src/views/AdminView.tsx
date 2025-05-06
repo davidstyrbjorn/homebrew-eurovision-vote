@@ -1,31 +1,3 @@
-import { ExpandCircleDown } from "@mui/icons-material";
-import {
-	Accordion,
-	AccordionDetails,
-	AccordionSummary,
-	Box,
-	Button,
-	Divider,
-	Grid,
-	List,
-	ListItem,
-	ListItemText,
-	TextField,
-	Typography,
-} from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import { AchievmentsContext } from "../contexts/AchievmentsContext";
-import { ParticipantContext } from "../contexts/ParticipantContext";
-import { UserContext } from "../contexts/UserContext";
-import { calculateAllAchievments } from "../firebase/achievments";
-import {
-	activateQuestion,
-	deactivateQuestion,
-	updateCurrentlyPlaying,
-} from "../firebase/admin";
-import { ACHIEVMENTS, Group, Participant, User } from "../types";
-import QuestionSubmitPrompt from "../components/QuestionSubmitPrompt";
-import { auth, db } from "../firebase.config";
 import { signInAnonymously } from "@firebase/auth";
 import {
 	collection,
@@ -34,6 +6,33 @@ import {
 	query,
 	updateDoc,
 } from "@firebase/firestore";
+import { ExpandCircleDown } from "@mui/icons-material";
+import {
+	Accordion,
+	AccordionDetails,
+	AccordionSummary,
+	Box,
+	Button,
+	Divider,
+	List,
+	ListItem,
+	ListItemText,
+	TextField,
+	Typography,
+} from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import QuestionSubmitPrompt from "../components/QuestionSubmitPrompt";
+import { AchievmentsContext } from "../contexts/AchievmentsContext";
+import { ParticipantContext } from "../contexts/ParticipantContext";
+import { UserContext } from "../contexts/UserContext";
+import { auth, db } from "../firebase.config";
+import { calculateAllAchievments } from "../firebase/achievments";
+import {
+	activateQuestion,
+	deactivateQuestion,
+	updateCurrentlyPlaying,
+} from "../firebase/admin";
+import { ACHIEVMENTS, Group, Participant, User } from "../types";
 
 const containerStyle = {
 	margin: "3rem 3rem",

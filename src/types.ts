@@ -87,12 +87,7 @@ export type Achievment = {
 	title: string;
 	descriptor: string;
 	isPercentageBased?: boolean;
-};
-
-export type AchievmentResult = {
-	// Ordered as 0,1,2 is place 1,2,3
-	names: Array<string>; // Player names/song names
-	scores: Array<number>; // Score
+	showAll: boolean;
 };
 
 export const ACHIEVMENTS: Achievment[] = [
@@ -101,12 +96,14 @@ export const ACHIEVMENTS: Achievment[] = [
 		title: "Girlsboss 👯",
 		descriptor: "Mest pooäng till bidrag framförd av en/flera kvinnor",
 		isPercentageBased: true,
+		showAll: false,
 	},
 	{
 		key: "mansgris",
 		title: "Mansgris 🐷🐖",
 		descriptor: "Mest pooäng till bidrag framförd av en/flera män",
 		isPercentageBased: true,
+		showAll: false,
 	},
 	{
 		key: "progressiv",
@@ -114,16 +111,21 @@ export const ACHIEVMENTS: Achievment[] = [
 		descriptor:
 			"Mest poäng till bidrag framförda av icke binära artister eller grupper med blandade kön",
 		isPercentageBased: true,
+		showAll: false,
 	},
 	{
 		key: "drunk",
 		title: "En för många 🍻",
 		descriptor: "De som gav mest poäng overall är...",
+		isPercentageBased: false,
+		showAll: false,
 	},
 	{
 		key: "snol",
 		title: "Tuffaste kritikern 🥇",
 		descriptor: "De som gav minst poäng overall är...",
+		isPercentageBased: false,
+		showAll: false,
 	},
 	{
 		key: "racist",
@@ -131,6 +133,7 @@ export const ACHIEVMENTS: Achievment[] = [
 		descriptor:
 			"De som gav minst andel poäng till bidrag utförda på andra språk",
 		isPercentageBased: true,
+		showAll: false,
 	},
 	{
 		key: "kultur",
@@ -138,33 +141,42 @@ export const ACHIEVMENTS: Achievment[] = [
 		descriptor:
 			"De som gav störst andel av sina poäng till låtar som inte sjungs på engelska",
 		isPercentageBased: true,
+		showAll: false,
 	},
 	{
 		key: "basicBitch",
 		title: "ICA Basic 😂",
 		descriptor: "Gav mest poäng till låtarna i top halvan av bettingen",
 		isPercentageBased: true,
+		showAll: false,
 	},
 	{
 		key: "hipster",
 		title: "Hipster 🪕",
 		descriptor: "Gav mest poäng till låtarna i botten halvan av bettingen",
 		isPercentageBased: true,
+		showAll: false,
 	},
 	{
 		key: "bottom3",
 		title: "Förlorarna 🤢",
 		descriptor: "Bidragen med minst total poäng är...",
+		isPercentageBased: false,
+		showAll: true,
 	},
 	{
 		key: "top3",
 		title: "Våra vinnare! 🏅🏅🏅",
 		descriptor: "Bidragen med högst total poäng är...",
+		isPercentageBased: false,
+		showAll: true,
 	},
 	{
 		key: "worstTaste",
 		title: "Smaklös 🤮",
 		descriptor: "Individen med mest annorlunda score från Max",
+		isPercentageBased: false,
+		showAll: false,
 	},
 ];
 
