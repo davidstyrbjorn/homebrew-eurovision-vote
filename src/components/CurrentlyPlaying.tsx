@@ -7,6 +7,7 @@ import {
 	Box,
 	TextField,
 	Typography,
+	Rating,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
@@ -16,50 +17,6 @@ import { fillUserVotes, updateVotesInUser } from "../firebase/user";
 import { toStringWithZeroPadding } from "../utility";
 import { ParticipantContext } from "../contexts/ParticipantContext";
 import { calculateAllAchievments } from "../firebase/achievments";
-import { Height, Padding } from "@mui/icons-material";
-
-const flexStyle = {
-	display: "flex",
-};
-
-const containerStyle = {
-	color: "white",
-	backgroundSize: "cover",
-	display: "flex",
-	flexDirection: "column",
-	justifyContent: "center",
-	padding: "1rem",
-};
-
-const songOrderStyle = {
-	flex: "1",
-	display: "flex",
-	background: "#F3DC14",
-	textAlign: "center",
-	flexDirection: "column",
-	justifyContent: "center",
-};
-
-const songDetailsStyle = {
-	flex: "4",
-	padding: "1rem 1rem",
-	color: "white",
-	background: "#6528BC",
-};
-
-const starsStyle = {
-	background: "#1DC0DF",
-};
-
-const orderStyle = {
-	height: "fit-content",
-	display: "flex",
-	flexDirection: "column",
-	justifyContent: "center",
-	padding: "1rem",
-	margin: "0.5rem 1rem 0 0",
-	color: "white",
-};
 
 type Props = {
 	participant: Participant;
@@ -85,22 +42,52 @@ const CurrentlyPlaying: React.FC<Props> = ({ participant, modal }) => {
 	};
 
 	return (
-		<Box sx={{ ...containerStyle }}>
-			<Box sx={{ ...flexStyle }}>
-				<Box sx={{ ...songOrderStyle }}>
-					<Typography sx={{ fontWeight: "bold" }} variant="h4">
+		<Box
+			style={{
+				display: "flex",
+				flexDirection: "column",
+				justifyContent: "center",
+				alignItems: "center",
+				maxWidth: "600px",
+				border: "2px solid #d3d3d3",
+				boxShadow: "0px 4px 20px rgba(255, 255, 255, 0.1)",
+				overflowX: "hidden",
+				background: "rgba(0, 0, 0, 0.1)",
+			}}
+		>
+			<Box style={{ display: "flex", width: "100%", }}>
+				<Box
+					style={{
+						padding: "0 2rem",
+						display: "flex",
+						textAlign: "center",
+						flexDirection: "column",
+						justifyContent: "center",
+						border: "1px solid #d3d3d3",
+						boxShadow: "0px 4px 20px rgba(255, 255, 255, 0.1)",
+					}}
+				>
+					<Typography style={{ fontWeight: "bold", color:"white" }} variant="h4">
 						{toStringWithZeroPadding(participant.order + 1)}
 					</Typography>
 				</Box>
-				<Box sx={{ ...songDetailsStyle }}>
+				<Box
+					style={{
+						flex: "3",
+						padding: "1rem 1rem",
+						color: "white",
+						border: "1px solid #d3d3d3",
+						boxShadow: "0px 4px 20px rgba(255, 255, 255, 0.1)",
+					}}
+				>
 					<Typography
-						sx={{ fontWeight: "bold", lineHeight: "1.2" }}
+						style={{ fontWeight: "bold", lineHeight: "1.2" }}
 						variant="h5"
 					>
 						{participant.country}
 					</Typography>
 					<Typography
-						sx={{ fontWeight: "bold", lineHeight: "1.2" }}
+						style={{ fontWeight: "bold", lineHeight: "1.2" }}
 						variant="h4"
 					>
 						{participant.title}
@@ -110,41 +97,45 @@ const CurrentlyPlaying: React.FC<Props> = ({ participant, modal }) => {
 					</Typography>
 				</Box>
 			</Box>
-			<Box sx={{ padding: "0.5rem", ...starsStyle }}>
-				<Typography variant="subtitle1" sx={{ textAlign: "center" }}>
+			<Box
+				style={{
+					width: "100%",
+					padding: "0.5rem",
+					alignItems: "center",
+					border: "1px solid #d3d3d3",
+					boxShadow: "0px 4px 20px rgba(255, 255, 255, 0.1)",
+				}}
+			>
+				{/* <Typography variant="subtitle1" style={{ textAlign: "center" }}>
 					Vad tyckte du om detta bidrag?
-				</Typography>
-				<Box sx={{ ...flexStyle }}>
+				</Typography> */}
+				<Box style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
+					<Rating
+						name="simple-controlled"
+						onChange={(_e, value) => {
+							const ratingValue = value || 5; // Default to 5 if value is null
+							const copy = new Map(user.votes);
+							copy.set(participant.country, ratingValue);
+							const updatedUser = { ...user, votes: copy };
+							setUser(updatedUser);
+							updateVotesInUser(updatedUser);
+						}}
+						value={getRating()}
+						max={10}
+						sx={{
+							"& .MuiRating-iconEmpty": {
+								color: "white",
+							},
+						}}
+					/>
 					<Typography
 						variant="h4"
-						color="#E6A600"
+						color="white"
 						display={"flex"}
-						sx={{ fontWeight: "bold" }}
-						width="120px"
+						style={{ fontWeight: "bold", textAlign: "center", lineHeight: "3rem", marginLeft: "1rem" }}
 					>
-						<MdStar />
 						{getRating()}
 					</Typography>
-					<Slider
-						sx={{
-							margin: "0 1rem",
-							color: "#E6A600",
-							borderRadius: "0",
-						}}
-						onChange={onSliderChange}
-						value={getRating()}
-						onChangeCommitted={(_e) => {
-							updateVotesInUser(user);
-						}}
-						aria-label="Vote"
-						defaultValue={5}
-						valueLabelDisplay="auto"
-						valueLabelFormat={(x) => x + " stars"}
-						step={1}
-						marks
-						min={1}
-						max={10}
-					/>
 				</Box>
 			</Box>
 		</Box>

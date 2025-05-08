@@ -1,6 +1,7 @@
 import React from "react";
 
 export type User = {
+	openAccordion: number;
 	name: string;
 	votes: Map<string, number>; // country to rating
 };
