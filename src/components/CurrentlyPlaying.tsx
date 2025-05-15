@@ -23,9 +23,8 @@ type Props = {
 	modal?: boolean;
 };
 
-const CurrentlyPlaying: React.FC<Props> = ({ participant, modal }) => {
+const CurrentlyPlaying: React.FC<Props> = ({ participant }) => {
 	const { user, setUser } = useContext(UserContext);
-	const { participants } = useContext(ParticipantContext);
 
 	const getRating = () => {
 		if (user.votes.get) return user.votes.get(participant.country) ?? 5;

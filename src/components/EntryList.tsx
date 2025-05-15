@@ -9,7 +9,6 @@ import { MdStar } from "react-icons/md";
 import { ParticipantContext } from "../contexts/ParticipantContext";
 import { Participant } from "../types";
 import { toStringWithZeroPadding } from "../utility";
-
 import { updateVotesInUser } from "../firebase/user";
 
 // Styles
@@ -122,7 +121,7 @@ const Entry: React.FC<EntryProps> = ({ participant, id }) => {
 				}}
 				onMouseDown={(e) => {
 					const startY = e.clientY;
-					const timeout = setTimeout(() => handleStart(), 100); // Require pressing for 500ms
+					const timeout = setTimeout(() => handleStart(), 250); // Require pressing for 500ms
 					(Box as any).mouseDownTimeout = timeout;
 					(Box as any).startY = startY;
 				}}
@@ -142,7 +141,7 @@ const Entry: React.FC<EntryProps> = ({ participant, id }) => {
 				onTouchStart={(e) => {
 					if (e.touches.length === 1) {
 						const startY = e.touches[0].clientY;
-						const timeout = setTimeout(() => handleStart(), 100); // Require pressing for 500ms
+						const timeout = setTimeout(() => handleStart(), 250); // Require pressing for 500ms
 						(Box as any).touchStartTimeout = timeout;
 						(Box as any).startY = startY;
 					}
@@ -233,6 +232,7 @@ const Entry: React.FC<EntryProps> = ({ participant, id }) => {
 						...styles.boxStyle,
 						...styles.starsSectionStyle,
 						alignItems: "center",
+						
 					}}
 				>
 					<Box
@@ -244,6 +244,12 @@ const Entry: React.FC<EntryProps> = ({ participant, id }) => {
 							width: "3rem",
 							height: "3rem",
 							marginRight: "0.5rem",
+							borderRadius: "50%",
+							
+							animation:
+									(user.votes.get(participant.country) ?? 5) === 10
+										? "bounce 1s infinite"
+										: "none",
 						}}
 					>
 						<svg
@@ -253,6 +259,7 @@ const Entry: React.FC<EntryProps> = ({ participant, id }) => {
 								transform: "rotate(-90deg)",
 								width: "100%",
 								height: "100%",
+								
 							}}
 						>
 							<circle
@@ -280,8 +287,31 @@ const Entry: React.FC<EntryProps> = ({ participant, id }) => {
 								strokeWidth="3"
 								strokeDasharray={`${(user.votes.get(participant.country) ?? 5) * 10}, 100`}
 								strokeLinecap="round"
+								
 							/>
 						</svg>
+						<style>
+							{`
+								@keyframes bounce {
+									0%, 100% {
+										transform: scale(1);
+										box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+									}
+									25% {
+										transform: scale(1.03);
+										box-shadow: 0 0 10px cyan;
+									}
+									50% {
+										transform: scale(1.05);
+										box-shadow: 0 0 10px hotpink;
+									}
+									75% {
+										transform: scale(1.03);
+										box-shadow: 0 0 10px limegreen;
+									}
+								}	
+							`}
+						</style>
 						<Box
 							sx={{
 								display: "flex",

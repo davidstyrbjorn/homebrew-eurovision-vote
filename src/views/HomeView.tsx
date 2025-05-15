@@ -63,7 +63,7 @@ const HomeView: React.FC<{}> = () => {
 							flexDirection: "row",
 							border: "2px solid #d2d2d2",
 							borderRadius: "4px",
-							background: "linear-gradient(100deg, rgb(242, 242, 242) 100%)",
+							background: "white",
 						}}
 					>
 						<EntryList />
