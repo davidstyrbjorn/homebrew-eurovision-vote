@@ -6,34 +6,21 @@ import {
 	Theme,
 	Typography,
 	LinearProgress,
-	Snackbar,
+	Dialog,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { MdTimer } from "react-icons/md";
 import { QuestionContext } from "../contexts/QuestionContext";
 
 const containerStyle: SxProps<Theme> = {
-	color: "white",
-
 	background: "rgba(255, 255, 255, 0.1)",
 	boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
 	backdropFilter: "blur(100px)",
 	margin: "1rem 0.5rem",
-	padding: " 1rem 1rem 1rem",
-	marginBottom: "1rem",
+	padding: "1rem",
 	display: "flex",
 	flexDirection: "column",
 	justifyContent: "center",
-};
-
-const addedButtonStyle = {
-	width: "100%",
-	margin: "0.5rem 0",
-	color: "white",
-};
-
-const style = {
-	transform: "translate(-10%, 14%)",
 };
 
 const QuestionSubmitPrompt: React.FC = () => {
@@ -44,57 +31,69 @@ const QuestionSubmitPrompt: React.FC = () => {
 		allowedSecondsToAnswer,
 		prompt,
 	} = useContext(QuestionContext);
+
 	const [answer, setAnswer] = useState("");
-	const [group, setGroup] = useState("");
-	const [remove, setRemove] = useState(false);
+	const [group, setGroup] = useState(localStorage.getItem("group") || "");
 	const [timeRemaining, setTimeRemaining] = useState(0);
-	const [open, setOpen] = useState<boolean>(false);
+	const [open, setOpen] = useState(false);
 
-	const onSubmit = () => {
-		// Save group name to local storage
-		localStorage.setItem("group", group);
+	useEffect(() => {
+		let interval: NodeJS.Timeout | null = null;
 
-		if (timeRemaining <= 0) return;
-		setRemove(!remove);
-		submitAnswer({
-			answer,
-			groupName: group,
-			timeRemaining: timeRemaining,
-		});
-		setOpen(true);
-	};
+		if (questionActive) {
+			setOpen(true);
+			const adjustedStartTime = questionStartTime; // Add 1 extra second to start time
+			const elapsed = Math.round((Date.now() - adjustedStartTime) / 1000);
+			setTimeRemaining(Math.max(allowedSecondsToAnswer - elapsed, 0));
+
+			interval = setInterval(() => {
+				const elapsed = Math.round((Date.now() - adjustedStartTime) / 1000);
+				const remaining = Math.max(allowedSecondsToAnswer - elapsed, 0);
+				setTimeRemaining(remaining);
+
+				if (remaining === 0) {
+					setOpen(false); // Close the dialog when timer reaches 0
+				}
+			}, 1000);
+		} else {
+			setOpen(false); // Close the modal when questionActive is false
+			setAnswer(""); // Reset answer
+			setGroup(localStorage.getItem("group") || ""); // Reset group to stored value
+			setTimeRemaining(0); // Reset timer
+		}
+
+		return () => {
+			if (interval) {
+				clearInterval(interval);
+			}
+		};
+	}, [questionActive, questionStartTime, allowedSecondsToAnswer]);
 
 	const handleClose = () => {
 		setOpen(false);
 	};
 
-	useEffect(() => {
-		const interval = setInterval(() => {
-			// console.log(questionStartTime);
-			let elapsed = (Date.now() - questionStartTime) / 1000;
-			elapsed = Math.round(elapsed);
-			const remaining = allowedSecondsToAnswer - elapsed;
-			setTimeRemaining(remaining > 0 ? remaining : 0);
-		}, 1000);
-
-		return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-	}, [questionStartTime, allowedSecondsToAnswer]);
-
-	useEffect(() => {
-		if (!group && localStorage.getItem("group")) {
-			setGroup(localStorage.getItem("group")!);
+	const handleSubmit = () => {
+		if (timeRemaining > 0) {
+			localStorage.setItem("group", group);
+			submitAnswer({ answer, groupName: group, timeRemaining });
+			setOpen(false);
 		}
-	}, []);
+	};
+
+	const formatTime = (seconds: number) => {
+		const minutes = Math.floor(seconds / 60);
+		const remainingSeconds = seconds % 60;
+		return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+	};
 
 	return (
 		<>
-			<Box
-				className={questionActive ? "question" : "question-out"}
-				sx={containerStyle}
-			>
+		<Dialog open={open} onClose={handleClose} fullWidth>
+			<Box sx={containerStyle}>
 				<Box sx={{ display: "flex", justifyContent: "space-between" }}>
 					<Typography variant="h4" sx={{ fontWeight: "bold" }}>
-						<MdTimer style={style} />
+						<MdTimer style={{ transform: "translate(-10%, 14%)" }} />
 						{prompt}
 					</Typography>
 					<Typography variant="h4">{timeRemaining}s</Typography>
@@ -102,46 +101,64 @@ const QuestionSubmitPrompt: React.FC = () => {
 
 				<LinearProgress
 					variant="determinate"
-					value={(1 - timeRemaining / allowedSecondsToAnswer) * 100}
-					sx={{ margin: "1rem 0", paddin: "1rem" }}
+					value={(1 - (timeRemaining) / allowedSecondsToAnswer) * 100}
+					sx={{ margin: "1rem 0" }}
 				/>
+
 				<TextField
-					color="primary"
-					sx={{ ...addedButtonStyle, background: "white" }}
+					sx={{ margin: "0.5rem 0", background: "white" }}
 					value={answer}
 					onChange={(e) => setAnswer(e.target.value)}
-					id="outlined-basic"
-					label="Svar"
+					label="Answer"
 					variant="filled"
 					required
 				/>
+
 				<TextField
-					sx={{ ...addedButtonStyle, background: "white" }}
+					sx={{ margin: "0.5rem 0", background: "white" }}
 					value={group}
 					onChange={(e) => setGroup(e.target.value)}
-					id="outlined-basic"
-					label="Grupp Namn"
+					label="Group Name"
 					variant="filled"
 					required
 				/>
+
 				<Button
-					sx={addedButtonStyle}
+					sx={{ margin: "0.5rem 0", width: "100%" }}
 					color={timeRemaining > 0 ? "info" : "error"}
 					variant="contained"
-					onClick={() => onSubmit()}
+					onClick={handleSubmit}
 				>
 					{timeRemaining > 0 ? "SEND" : "TOO LATE"}
 				</Button>
 			</Box>
-			<Snackbar
-				anchorOrigin={{ vertical: "top", horizontal: "center" }}
-				open={open}
-				onClose={handleClose}
-				message="SKICKAT!"
-				color="green"
-				autoHideDuration={3000}
-			/>
+		</Dialog>
+		
+		{timeRemaining > 0 && (
+			<Box sx={{ margin: "1rem 1rem", background: "rgba(30, 30, 30, 0.85)", borderRadius: 2, p: 2 }}>
+				<Typography variant="body1" sx={{ fontWeight: "bold", color: "#fff" }}>
+					Given Answer: <span style={{ color: "#90caf9" }}>{answer || "No answer yet"}</span>
+				</Typography>
+				<Button
+					sx={{
+						margin: "0.5rem 0",
+						width: "100%",
+						backgroundColor: "#1976d2",
+						color: "#fff",
+						"&:hover": {
+							backgroundColor: "#1565c0",
+						},
+					}}
+					color="info"
+					variant="contained"
+					onClick={() => setOpen(true)}
+				>
+					Edit Answer
+				</Button>
+			</Box>
+		)}
 		</>
+		
 	);
 };
 

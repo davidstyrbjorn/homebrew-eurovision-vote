@@ -55,54 +55,62 @@ const AdminView: React.FC = () => {
 	const [groups, setGroups] = useState<Group[]>([]);
 
 	useEffect(() => {
-		auth.onAuthStateChanged((user) => {
-			if (!user) signInAnonymously(auth);
-		});
+		const authenticateUser = () => {
+			auth.onAuthStateChanged((user) => {
+				if (!user) signInAnonymously(auth);
+			});
+		};
 
-		const q = query(collection(db, "groups"));
-		const unsub = onSnapshot(q, (snapshot) => {
-			setGroups(
-				snapshot.docs.map((doc) => {
-					return doc.data() as Group;
-				})
-			);
-		});
-		return unsub;
+		const fetchGroups = () => {
+			const q = query(collection(db, "groups"));
+			return onSnapshot(q, (snapshot) => {
+				setGroups(snapshot.docs.map((doc) => doc.data() as Group));
+			});
+		};
+
+		authenticateUser();
+		const unsubscribe = fetchGroups();
+		return unsubscribe;
 	}, []);
 
-	const handleOnQuestionSubmit = () => {
-		activateQuestion(duration, prompt);
-	};
+	useEffect(() => {
+		if (duration > 0) {
+			const timer = setTimeout(() => {
+				// Deactivate the question when the timer lapses
+				deactivateQuestion();
+			}, duration * 1000);
+
+			return () => clearTimeout(timer);
+		}
+	}, [duration]);
+
+	const handleOnQuestionSubmit = () => activateQuestion(duration, prompt);
 
 	const exportToCSV = () => {
-		// Fetch all users and their votes
 		const q = query(collection(db, "users"));
-		const unsub = onSnapshot(q, (snapshot) => {
-			const users = snapshot.docs.map((doc) => {
-				return doc.data() as User;
-			});
-			// Convert to CSV format
-			let csvContent = "data:text/csv;charset=utf-8,";
-			csvContent += "Name,Country,Score\n"; // Header row
-			users.forEach((user) => {
-				Object.entries(user.votes).forEach(([country, score]) => {
-					csvContent += `${user.name},${country},${score}\n`;
-				});
-			});
-			// Create a link and download the CSV file
-			const encodedUri = encodeURI(csvContent);
+		onSnapshot(q, (snapshot) => {
+			const users = snapshot.docs.map((doc) => doc.data() as User);
+			const csvContent = [
+				"Name,Country,Score",
+				...users.flatMap((user) =>
+					Object.entries(user.votes || {}).map(
+						([country, score]) => `${user.name},${country},${score}`
+					)
+				),
+			].join("\n");
+
+			const encodedUri = encodeURI(`data:text/csv;charset=utf-8,${csvContent}`);
 			const link = document.createElement("a");
 			link.setAttribute("href", encodedUri);
 			link.setAttribute("download", "votes.csv");
-			document.body.appendChild(link); // Required for FF
+			document.body.appendChild(link);
 			link.click();
 		});
-		return unsub;
 	};
 
 	const participantEntry = (p: Participant, i: number) => {
 		const isCurrentlyPlaying =
-			currentlyPlaying && currentlyPlaying.country == p.country;
+			currentlyPlaying && currentlyPlaying.country === p.country;
 		return (
 			<Box key={i}>
 				<ListItem
@@ -193,48 +201,67 @@ const AdminView: React.FC = () => {
 	const getQuestionView = () => {
 		return (
 			<Box
-				bgcolor={"white"}
 				marginTop={16}
-				padding={4}
 				display="flex"
-				justifyContent={"space-around"}
-			>
+				flexDirection="column"
+				alignItems="center"
+				gap={4}
+				>
 				<QuestionSubmitPrompt />
-				<Box>
-					<Typography>Antal Sekunder: </Typography>
-					<TextField
-						value={duration}
-						onChange={(e) =>
-							setDuration(Number.parseInt(e.target.value ?? 0))
-						}
-						type={"number"}
-					/>
-					<Typography>Prompt'N: </Typography>
-					<TextField
-						value={prompt}
-						onChange={(e) => {
-							setPrompt(e.target.value);
-						}}
-						type={"text"}
-						placeholder="Vad är din fråga?"
-					></TextField>
+				<Box
+					padding={4}
+					bgcolor={"white"}
+					display="flex"
+					flexDirection="column"
+					alignItems="center"
+					gap={2}
+					width="100%"
+					maxWidth={400}
+				>
+					<Box display="flex" flexDirection="column" width="100%">
+						<Typography>Antal Sekunder:</Typography>
+						<TextField
+							fullWidth
+							value={duration}
+							onChange={(e) =>
+								setDuration(Number.parseInt(e.target.value ?? 0))
+							}
+							type={"number"}
+							variant="outlined"
+						/>
+					</Box>
+					<Box display="flex" flexDirection="column" width="100%">
+						<Typography>Prompt:</Typography>
+						<TextField
+							fullWidth
+							value={prompt}
+							onChange={(e) => {
+								setPrompt(e.target.value);
+							}}
+							type={"text"}
+							placeholder="Vad är din fråga?"
+							variant="outlined"
+						/>
+					</Box>
 				</Box>
-				<Button
-					size="large"
-					color="success"
-					variant="contained"
-					onClick={() => handleOnQuestionSubmit()}
-				>
-					SKICKA
-				</Button>
-				<Button
-					size="large"
-					color="error"
-					variant="contained"
-					onClick={() => deactivateQuestion()}
-				>
-					STÄNG AV
-				</Button>
+				<Box display="flex" justifyContent="center" gap={2}>
+					<Button
+						size="large"
+						color="success"
+						variant="contained"
+						onClick={() => handleOnQuestionSubmit()}
+					>
+						SKICKA
+					</Button>
+					<Button
+						size="large"
+						color="error"
+						variant="contained"
+						onClick={() => deactivateQuestion()}
+					>
+						STÄNG AV
+					</Button>
+				</Box>
 			</Box>
 		);
 	};
@@ -307,7 +334,7 @@ const AdminView: React.FC = () => {
 					<List
 						sx={{
 							width: "100%",
-							maxWidth: 360,
+							maxWidth: 600,
 							bgcolor: "background.paper",
 						}}
 					>
@@ -324,7 +351,7 @@ const AdminView: React.FC = () => {
 					<List
 						sx={{
 							width: "100%",
-							maxWidth: 360,
+							maxWidth: 600,
 							bgcolor: "background.paper",
 						}}
 					>
@@ -341,7 +368,7 @@ const AdminView: React.FC = () => {
 					<List
 						sx={{
 							width: "100%",
-							maxWidth: 360,
+							maxWidth: 600,
 							bgcolor: "background.paper",
 						}}
 					>

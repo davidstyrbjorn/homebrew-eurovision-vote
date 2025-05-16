@@ -392,7 +392,7 @@ const EntryList: React.FC = () => {
 	}, [participants, currentlyPlaying]);
 
 	return (
-		<Box sx={{ minHeight: "60vh", padding: "0rem" }}>
+		<Box sx={{ width: "100%" }}>
 			{previouslyPlayedParticipants.map((participant, index) => (
 				<React.Fragment key={participant.order}>
 					<Entry participant={participant} id={index} />

@@ -20,6 +20,7 @@ const HomeView: React.FC<{}> = () => {
 	if (user.name == "") return <LoginView />;
 	return (
 		<>
+				<QuestionSubmitPrompt />
 			{currentlyPlaying && (
 				<Box
 					sx={{
@@ -28,14 +29,11 @@ const HomeView: React.FC<{}> = () => {
 						overflowX: "hidden",
 					}}
 				>
-					<QuestionSubmitPrompt />
 
 					<Typography
-						className="questionRoom"
 						variant="subtitle1"
 						color="white"
 						padding="0rem 1rem"
-						marginTop={questionActive ? "0" : "-340px"}
 					/>
 
 					<Box
