@@ -125,12 +125,12 @@ head {
 	100% {
 		opacity: 0;
 		filter: blur(20px);
-		transform: translateX(100%);
+		transform: scale(0.5);
 	}
 }
 
 .trigger-fade-out {
-	animation: fadeOut 2s ease-out 0s 1 forwards;
+	animation: fadeOut 0.1s ease-out 0s 1 forwards;
 }
 
 .trigger-fade-in {

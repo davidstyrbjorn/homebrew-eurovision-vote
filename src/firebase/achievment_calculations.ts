@@ -269,11 +269,12 @@ const top3Songs = (
 	// Go through each sont and accumulate their points from each participant
 	participants.forEach((p) => {
 		let song: PlayerAndScore = {
-			name: countryNameToFlag(p.country) + " " + p.artist,
+			name: countryNameToFlag(p.country) + " | " + p.artist,
 			score: 0,
 		};
 		users.forEach((u) => {
-			song.score += u.votes.get(p.country)!;
+			const vote = u.votes.get(p.country);
+			song.score += typeof vote === "number" ? vote : 0;
 		});
 		// Add to array
 		songAndTheirTotal.push(song);
@@ -295,11 +296,12 @@ const bottom3Songs = (
 	// Go through each sont and accumulate their points from each participant
 	participants.forEach((p) => {
 		let song: PlayerAndScore = {
-			name: p.artist + " | " + p.country,
+			name: countryNameToFlag(p.country) + " | " + p.artist,
 			score: 0,
 		};
 		users.forEach((u) => {
-			song.score += u.votes.get(p.country)!;
+			const vote = u.votes.get(p.country);
+			song.score += typeof vote === "number" ? vote : 0;
 		});
 		// Add to array
 		songAndTheirTotal.push(song);
