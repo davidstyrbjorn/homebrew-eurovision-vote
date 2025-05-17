@@ -269,7 +269,7 @@ const top3Songs = (
 	// Go through each sont and accumulate their points from each participant
 	participants.forEach((p) => {
 		let song: PlayerAndScore = {
-			name: p.artist + " | " + p.country,
+			name: countryNameToFlag(p.country) + " " + p.artist,
 			score: 0,
 		};
 		users.forEach((u) => {
@@ -413,3 +413,64 @@ export const keyToFunctionAchievment = new Map<KEY, ValueType>([
 	["mansgris", mansgris],
 	["progressiv", progressiv],
 ]);
+
+/**
+ * Maps English country names to their emoji flags.
+ */
+export const countryNameToFlag = (country: string): string => {
+	const flags: Record<string, string> = {
+		"Sweden": "🇸🇪",
+		"Norway": "🇳🇴",
+		"Denmark": "🇩🇰",
+		"Finland": "🇫🇮",
+		"Iceland": "🇮🇸",
+		"United Kingdom": "🇬🇧",
+		"Ireland": "🇮🇪",
+		"Germany": "🇩🇪",
+		"France": "🇫🇷",
+		"Spain": "🇪🇸",
+		"Italy": "🇮🇹",
+		"Portugal": "🇵🇹",
+		"Netherlands": "🇳🇱",
+		"Belgium": "🇧🇪",
+		"Switzerland": "🇨🇭",
+		"Austria": "🇦🇹",
+		"Poland": "🇵🇱",
+		"Czech Republic": "🇨🇿",
+		"Slovakia": "🇸🇰",
+		"Hungary": "🇭🇺",
+		"Slovenia": "🇸🇮",
+		"Croatia": "🇭🇷",
+		"Serbia": "🇷🇸",
+		"Montenegro": "🇲🇪",
+		"Bosnia and Herzegovina": "🇧🇦",
+		"North Macedonia": "🇲🇰",
+		"Albania": "🇦🇱",
+		"Greece": "🇬🇷",
+		"Turkey": "🇹🇷",
+		"Russia": "🇷🇺",
+		"Ukraine": "🇺🇦",
+		"Belarus": "🇧🇾",
+		"Estonia": "🇪🇪",
+		"Latvia": "🇱🇻",
+		"Lithuania": "🇱🇹",
+		"Georgia": "🇬🇪",
+		"Armenia": "🇦🇲",
+		"Azerbaijan": "🇦🇿",
+		"Israel": "🇮🇱",
+		"Australia": "🇦🇺",
+		"San Marino": "🇸🇲",
+		"Malta": "🇲🇹",
+		"Cyprus": "🇨🇾",
+		"Moldova": "🇲🇩",
+		"Romania": "🇷🇴",
+		"Bulgaria": "🇧🇬",
+		"Luxembourg": "🇱🇺",
+		"Monaco": "🇲🇨",
+		"Andorra": "🇦🇩",
+		"Liechtenstein": "🇱🇮",
+		"Morocco": "🇲🇦",
+		// Add more as needed
+	};
+	return flags[country] || "";
+};
