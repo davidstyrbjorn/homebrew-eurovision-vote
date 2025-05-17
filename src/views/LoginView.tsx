@@ -1,6 +1,7 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
+import logo from "../Eurovision_Song_Contest.png";
 
 const LoginView: React.FC<{}> = () => {
 	const { loginAsUser, setIsMax, setIsAch } = useContext(UserContext);
@@ -53,18 +54,7 @@ const LoginView: React.FC<{}> = () => {
 				maxWidth: "600px",
 			}}
 		>
-			<Typography
-				variant="h3"
-				sx={{
-					fontWeight: "bold",
-					color: "purple",
-					textShadow: "2px 2px 6px rgba(255, 255, 255, 0.8)",
-					margin: "2rem",
-					fontFamily: "'Roboto', sans-serif",
-				}}
-			>
-				MARREVISION 2025
-			</Typography>
+			<img src={logo}></img>
 			<Typography
 				variant="subtitle1"
 				sx={{
